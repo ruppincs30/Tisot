@@ -1,0 +1,1189 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Title Page-->
+    <title>Tisot</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/airplane.png" />
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    <!--***************************************datatables*********************************************-->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+
+    <!--***************************************ajaxCalls*********************************************-->
+    <script src="../Scripts/ajaxCalls.js"></script>
+
+
+    <!--***************************************stylesheet*********************************************-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">                <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">                                      <!-- Bootstrap style -->
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css" />
+    <link rel="stylesheet" href="css/tooplate-style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main.css" rel="stylesheet" media="all">
+
+    <title></title>
+    <style>
+        /*body {
+            background-image: url('1470792.jpg');
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        table {
+            color: white;
+        }*/
+        /*button {
+            margin-left: 10px;
+        }*/
+
+
+
+
+        .colorDiv {
+            height: 30px;
+            width: 70px;
+            border: 2px solid black
+        }
+
+        #newBTN {
+            background-color: blueviolet;
+            margin-bottom: 10px;
+            width:90px;
+        }
+
+        tdiv {
+            float: left;
+            font-family: 'Times New Roman', Times, serif
+        }
+
+        #scrollDiv {
+            height: 600px;
+            width: 825px;
+            overflow: scroll;
+        }
+
+        #bigdiv {
+            width: 800px;
+            height: 60px;
+            text-align: center;
+            background-color: #e8e8e8;
+            border: solid #c8c8c8 1px;
+            margin: 2px;
+        }
+
+        #line1 {
+            width: 100%;
+            height: 42%;
+        }
+
+        #line2 {
+            width: 100%;
+            height: 55%;
+        }
+
+        .box {
+            width: 110px;
+        }
+
+        #managerPage {
+            background-image: url('img/bg-img-1.jpg');
+        }
+        #managerPageDiv {
+           padding:100px;
+            text-align: center;
+           
+        }
+
+        .ManagerPagecon {
+            height: 200px;
+            background-color: white;
+        }
+            .ManagerPagecon input {
+                width: 200px;
+                margin: 70px;
+            }
+
+        .button {
+            background-color: #c23b3b;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .button4 {
+            border-radius: 12px;
+        }
+
+
+    </style>
+
+    <script>
+        var codesArr = new Array();
+        var lineArr = new Array();
+
+        $(document).ready(function () {
+            //if{ //localStorage.length === 0) {
+
+            codesUrl = "https://api.skypicker.com/locations?type=dump&locale=en-US&location_types=airport&limit=4000&active_only=true&sort=name";
+            $.get(codesUrl).done((data) => {
+                codesArr = data.locations;
+                //localStorage['locationCodes'] = JSON.stringify(codesArr);
+                populateDataList(codesArr);
+                //addAirport();
+            });
+            $.get(codesUrl).fail((err) => {
+                console.log(err);
+            });
+
+            lineUrl = "https://api.skypicker.com/airlines?";
+            $.get(lineUrl).done((data) => {
+                lineArr = data;
+                //localStorage['locationAir'] = JSON.stringify(lineArr);
+                //addAirline();
+
+            });
+            $.get(lineUrl).fail((err) => {
+                console.log(err);
+            });
+
+            $("#searchBTN").click(getFlight);
+            $("#addF").click(addFlight);
+            $("#myFlightsBTN").click(showFlights);
+            $("#managerDiv").hide();
+            
+            $("#managerPage").hide();
+            $("#bookDiv").hide();
+            $("#loginForm").submit(Login);
+            $("#bookForm").submit(Book);
+            $("#flightTable").hide();
+            $("#discountPage").hide();
+            
+
+            mode = "";
+
+            $("#cancelSaveBTN").on("click", function () {
+                car = null;
+                $("#editDiv").hide();
+                if (mode == "new") $("#pForm").show();
+                mode = "";
+            });
+
+            $("#newBTN").on("click", function () {
+                discount = null;
+                mode = "new";
+                $("#pForm").hide();
+                $("#editDiv").show();
+                //clearFields();
+                $("#editDiv :input").prop("disabled", false); // new mode: enable all controls in the form
+                
+            });
+
+
+            // once the document is ready we fetch a list of cars from the server
+
+
+            $("#discountForm").submit(onSubmitFunc); // wire the submit event to a function called f1
+
+            //$("#editDiv").hide();
+
+
+        });
+
+        function populateDataList(codesArr) {
+            for (var i = 0; i < codesArr.length; i++) {
+                code = codesArr[i].code;
+                $("datalist").append('<option value="' + code + '">');
+            }
+        }
+
+        function correctDate(Date) {
+            dates = [];
+            dates = Date.split('-');
+            return dates[2] + '/' + dates[1] + '/' + dates[0];
+        }
+
+        function hideSearch() {
+            $("#searchDiv").hide();
+            $("#managerDiv").show();
+            
+        }
+
+        function convertToHumanTime(unixTimeStamp) {
+            // Months array
+            var months_arr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            // Convert timestamp to milliseconds
+            var date = new Date(unixTimeStamp * 1000);
+            // Year
+            var year = date.getFullYear();
+            // Month
+            var month = months_arr[date.getMonth()];
+            // Day
+            var day = date.getDate();
+            // Hours
+            var hours = date.getHours();
+            // Minutes
+            var minutes = "0" + date.getMinutes();
+            // Seconds
+            var seconds = "0" + date.getSeconds();
+            // Display date time in MM-dd-yyyy h:m:s format
+            var convdataTime = month + '-' + day + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+            return convdataTime;
+        }
+
+
+        function getFlight() {
+            let from = $("#fromTB").val();
+            let to = $("#toTB").val();
+            let dateFrom = $("#dateFromTB").val();
+            let dateTo = $("#dateToTB").val();
+            ajaxCall("GET", "https://api.skypicker.com/flights?flyFrom=" + from + "&to=" + to + "&dateFrom=" + correctDate(dateFrom) + "&dateTo=" + correctDate(dateTo) + "&partner=picky", "", getSuccessCB, errorCB);
+        }
+
+        function stops(arrStops) {
+            stopStr = "";
+            for (stop in arrStops)
+                stopStr += arrStops[stop].cityTo + ', ';
+            return stopStr;
+        }
+
+        function addAirport() { //add airport to SQl
+
+            for (i = 0; i < codesArr.length; i++) {
+
+                let code = codesArr[i].code;
+                let name = codesArr[i].name;
+                //alert(codesArr[i].location.lon);
+                let lon = codesArr[i].location.lon;
+                let lat = codesArr[i].location.lat;
+                let city = codesArr[i].city.name;
+                let country = codesArr[i].city.country.name;
+
+                ao = {
+                    Code: code,
+                    Name: name,
+                    Lon: lon,
+                    Lat: lat,
+                    City: city,
+                    Country: country
+                }
+
+                ajaxCall("POST", "../api/Airports", JSON.stringify(ao), postSuccessCB, postErrorCB);
+
+            }
+        }
+
+        function addAirline() { //add airline to SQl
+            for (i = 0; i < lineArr.length; i++) {
+
+                if (lineArr[i].type == "airline") {
+                    let code = lineArr[i].id;
+                    let name = lineArr[i].name;
+
+                    alo = {
+                        Code: code,
+                        Name: name,
+                    }
+                    //alert(lineArr[i].name);
+                    ajaxCall("POST", "../api/Airlines", JSON.stringify(alo), postSuccessCB, postErrorCB);
+                }
+            }
+        }
+
+        var booknum;
+        function addFlight(num) {
+            booknum = num;
+            $("#searchDiv").hide();
+            $("#bookDiv").show();
+
+            let id = flightData[num].id;
+            let airportOut = flightData[num].flyFrom;
+            let airportin = flightData[num].flyTo;
+            let timeOut = convertToHumanTime(flightData[num].dTime);
+            let timeIn = convertToHumanTime(flightData[num].aTime);
+            let duration = ((flightData[num].duration.total) / 3600);
+            let cost = flightData[num].price;
+            let stop = flightData[num].route.length;
+
+            flight = {
+                Id: id,
+                AirportOut: airportOut,
+                Airportin: airportin,
+                TimeOut: timeOut,
+                TimeIn: timeIn,
+                Duration: duration,
+                Cost: cost,
+                Stop: stop
+            }
+           
+
+            ajaxCall("POST", "../api/Myflights", JSON.stringify(flight), postSuccessCB, postErrorCB);
+
+            for (var i = 0; i < flightData[num].route.length; i++) {
+
+                let id = flightData[num].route[i].id;
+                let flightid = flightData[num].id;
+                let legnum = i + 1;
+                let flightno = flightData[num].route[i].flight_no;
+                let airportOut = flightData[num].route[i].flyFrom;
+                let airportin = flightData[num].route[i].flyTo;
+                let airlinecode = flightData[num].route[i].airline;
+                let timeOut = convertToHumanTime(flightData[num].route[i].dTime);
+                let timeIn = convertToHumanTime(flightData[num].route[i].aTime);
+                let duration = 5; /****************************************/
+
+                leg = {
+                    Id: id,
+                    Flightid: flightid,
+                    Legnum: legnum,
+                    Flightno: flightno,
+                    AirportOut: airportOut,
+                    Airportin: airportin,
+                    Airlinecode: airlinecode,
+                    TimeOut: timeOut,
+                    TimeIn: timeIn,
+                    Duration: duration,
+                }
+
+                ajaxCall("POST", "../api/Legs", JSON.stringify(leg), postSuccessCB, postErrorCB);
+            }
+
+        }
+
+
+        function getSuccessCB(Data) {
+            flightData = Data.data;
+            console.log(flightData);
+            str = '<tdiv id="scrollDiv">';
+            for (var i = 0; i < flightData.length; i++) {
+                str += '<tdiv id="bigdiv"><tdiv id="line1"><tdiv class="box">AirLine</tdiv><tdiv class="box"> From</tdiv><tdiv class="box"> To</tdiv>' +
+                    '<tdiv class="box"> Date</tdiv><tdiv class="box">Stop</tdiv><tdiv class="box">Price</tdiv></tdiv>' +
+                    ' <tdiv id="line2"><tdiv id="airlineName' + i + '" class="box">' + flightData[i].airlines[0] + '</tdiv>' +
+                    '<tdiv id="fromName' + i + '" class="box">' + flightData[i].cityFrom + '</tdiv>' +
+                    '<tdiv id="toName' + i + '" class="box">' + flightData[i].cityTo + '</tdiv>' +
+                    '<tdiv id="dateName' + i + '" class="box">' + convertToHumanTime(flightData[i].dTime) + '</tdiv>' +
+                    '<tdiv id="stopName' + i + '" class="box">' + stops(flightData[i].route) + '</tdiv>' +
+                    '<tdiv id="priceName' + i + '" class="box">' + flightData[i].price + '€</tdiv>' +
+                    '<tdiv id="book" class="box" style="margin:-5px"><button id="addF" class="button button4" onclick="addFlight(' + i + ')">Add</button>' +
+                    '</tdiv></tdiv></tdiv>';
+            }
+            str += '</tdiv >';
+            document.getElementById("ph").innerHTML = str;
+        }
+
+
+
+        function successLocalGetCB(data2) {
+            document.getElementById("ph").innerHTML = "";
+            str = '<div id="scrollDiv">';
+            for (var i = 0; i < data2.length; i++) {
+                str += '<div id="bigdiv"><div id="line1"><div class="box">AirLine</div><div class="box"> From</div><div class="box"> To</div>' +
+                    '<div class="box"> Date</div><div class="box">Stop</div><div class="box">Price</div></div>' +
+                    ' <div id="line2"><div id="airlineName' + i + '" class="box">' + data2[i].AirlineName + '</div>' +
+                    '<div id="fromName' + i + '" class="box">' + data2[i].From + '</div>' +
+                    '<div id="toName' + i + '" class="box">' + data2[i].To + '</div>' +
+                    '<div id="dateName' + i + '" class="box">' + data2[i].Departure + '</div>' +
+                    '<div id="stopName' + i + '" class="box">' + data2[i].Stops + '</div>' +
+                    '<div id="priceName' + i + '" class="box">' + data2[i].Price + '</div>' +
+                    '</div></div>';
+            }
+            str += '</div>';
+            document.getElementById("ph").innerHTML = str;
+        }
+
+        function errorCB(err) {
+            console.log(err);
+        }
+
+        function showFlights() {
+            ajaxCall("GET", "../api/flights", "", successLocalGetCB, errorCB);
+
+        }
+
+        function postSuccessCB() {
+
+
+        }
+
+        function postErrorCB(err) {
+
+        }
+
+
+        function successCBF(data) {
+            console.log(data);
+        }
+
+        function errorCBF(err) {
+            console.log(err);
+        }
+
+
+
+        function Login() {
+            var Manageruser = {
+                Name: $("#username").val(),
+                Password: $("#pwd").val()
+            }
+            ajaxCall("POST", "../api/admin/login", JSON.stringify(Manageruser), loginSCB, loginECB);
+
+            return false;
+
+        }
+
+        function Book() {
+
+            let id = flightData[booknum].id;
+            let airportOut = flightData[booknum].flyFrom;
+            let airportin = flightData[booknum].flyTo;
+            let timeOut = convertToHumanTime(flightData[booknum].dTime);
+            let timeIn = convertToHumanTime(flightData[booknum].aTime);
+            let duration = ((flightData[booknum].duration.total) / 3600);
+            let cost = flightData[booknum].price;
+            let stop = flightData[booknum].route.length;
+
+            flight = {
+                Id: id,
+                AirportOut: airportOut,
+                Airportin: airportin,
+                TimeOut: timeOut,
+                TimeIn: timeIn,
+                Duration: duration,
+                Cost: cost,
+                Stop: stop,
+                Name: $("#bookName").val(),
+                Email: $("#bookEmail").val()
+            }
+
+            ajaxCall("POST", "../api/Myflights", JSON.stringify(flight), bookSCB, bookECB);
+
+            for (var i = 0; i < flightData[num].route.length; i++) {
+
+                let id = flightData[num].route[i].id;
+                let flightid = flightData[num].id;
+                let legnum = i + 1;
+                let flightno = flightData[num].route[i].flight_no;
+                let airportOut = flightData[num].route[i].flyFrom;
+                let airportin = flightData[num].route[i].flyTo;
+                let airlinecode = flightData[num].route[i].airline;
+                let timeOut = convertToHumanTime(flightData[num].route[i].dTime);
+                let timeIn = convertToHumanTime(flightData[num].route[i].aTime);
+                let duration = 5; /****************************************/
+
+                leg = {
+                    Id: id,
+                    Flightid: flightid,
+                    Legnum: legnum,
+                    Flightno: flightno,
+                    AirportOut: airportOut,
+                    Airportin: airportin,
+                    Airlinecode: airlinecode,
+                    TimeOut: timeOut,
+                    TimeIn: timeIn,
+                    Duration: duration,
+                }
+
+                ajaxCall("POST", "../api/Legs", JSON.stringify(leg), postSuccessCB, postErrorCB);
+            }
+
+            return false;
+        }
+
+        function bookS() {
+            
+            //swal("! תודה על קנייתך", "נציג ייצור איתך קשר בהקדם", "success");
+            alert("ok");
+            //$("#bookDiv").hide();
+            //$("#searchDiv").show();
+        }
+
+        function bookECB(err) {
+            swal("! עסקה לא אושרה", "נסה שנית", "error");
+        }
+
+        function managerPage() {
+
+            $("#managerPage").hide();
+            ajaxCall("GET", "../api/myflights", "", getSuccess, geterror);
+
+        }
+
+        var flights
+        function getSuccess(flightdata) {
+
+            $("#flightTable").show();
+            flights = flightdata;
+
+            try {
+                tbl = $('#flightTable').DataTable({
+                    data: flightdata,
+                    pageLength: 10,
+                    autoWidth: false,
+                    columns: [
+                        { data: "Id"},
+                        { data: "AirportOut" },
+                        { data: "AirportIn" },
+                        { data: "TimeO" },
+                        { data: "TimeI" },
+                        { data: "Duration" },
+                        { data: "Cost" },
+                        { data: "Stops" },
+                        { data: "Name" },
+                        { data: "Email" },
+                    ],
+                    
+
+                });
+            }
+
+            catch (err) {
+                alert(err);
+            }
+        }
+       
+        function geterror() {
+
+        }
+
+        function discountTable() {
+
+            $("#managerPage").hide();
+            $("#discountPage").show();
+            $("#editDiv").hide();
+
+            ajaxCall("GET", "../api/discounts", "", getSuccessDiscount, geterrorDiscount);
+
+        }
+
+
+        var discounts
+        function getSuccessDiscount(discountdata) {
+
+            $("#discountsTable").show();
+            discounts = discountdata;
+            a = 0;
+            try {
+                tbl = $('#discountsTable').DataTable({
+                    data: discountdata,
+                    pageLength: 10,
+                    columns: [
+                    {
+                            render: function (data, type, row, meta) {
+                            //let dataDiscount = "'data-discountId='" + row.Id + "'";
+                            let dataDiscount = 'data-discountId="' + row.Id + '"';
+                            //let dataDiscount = 'data-discountId="' + a + '"';
+
+                            editBtn = "<button type='button' class = 'editBtn btn btn-success' " + dataDiscount + "> Edit </button>";
+                          
+                            deleteBtn = "<button type='button' class = 'deleteBtn btn btn-danger' " + dataDiscount + "> Delete </button>";
+                            //a++;
+                            return editBtn + deleteBtn;
+                        },
+                    },
+
+                    { data: "Id" },
+                    { data: "Code" },
+                    { data: "CityFrom" },
+                    { data: "CityTo" },
+                    { data: "TimeO" },
+                    { data: "TimeI" },
+                    { data: "CompanyDiscount" },
+                    ],
+                });
+            buttonEvents();
+        
+        }
+        
+
+            catch (err) {
+                alert(err);
+            }
+        }
+
+        function geterrorDiscount() {
+
+        }
+
+        function buttonEvents() {
+
+            $(document).on("click", ".editBtn", function () {
+                mode = "edit";
+                markSelected(this);
+                $("#editDiv").show();
+                $("#editDiv :input").prop("disabled", false); // edit mode: enable all controls in the form
+                populateFields(this.getAttribute('data-discountId')); // fill the form fields according to the selected row
+            });
+
+            $(document).on("click", ".deleteBtn", function () {
+                mode = "delete";
+                markSelected(this);
+                var discountId = this.getAttribute('data-discountId');
+                swal({ // this will open a dialouge 
+                    title: "Are you sure ??",
+                    text: "",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+                })
+                    .then(function (willDelete) {
+                        if (willDelete) DeleteDiscount(discountId);
+                        else swal("Not Deleted!");
+                    });
+            });
+        }
+
+        function DeleteDiscount(id) {
+            ajaxCall("DELETE", "../api/discounts/" + id, "", deleteSuccess, error);
+        }
+
+
+       
+
+        function deleteSuccess(discountdata) {
+            //tbl.clear();
+            redrawTable(tbl, discountdata);
+            //buttonEvents();
+            ////$("#editDiv").hide();
+            //swal("Deleted Successfuly!", "Great Job", "success");
+            //mode = "";
+        }
+
+        function error() {
+
+        }
+
+        function markSelected(btn) {
+            $("#discountsTable tr").removeClass("selected"); // remove seleced class from rows that were selected before
+            row = (btn.parentNode).parentNode; // button is in TD which is in Row
+            row.className = 'selected'; // mark as selected
+        }
+
+        function populateFields(Id) {
+            discount = getDiscount(Id);
+            $("#code").val(discount.code);
+            $("#cityFrom").val(discount.CityFrom);
+            $("#cityTo").val(discount.CityTo);
+            $("#timeO").val(discount.TimeOut);
+            $("#timeI").val(discount.TimeIn);
+            $("#companyDiscount").val(discount.CompanyDiscount);
+            
+        }
+
+        function getDiscount(id) {
+            for (i in discounts) {
+                if (discounts[i].Id == id)
+                    return discounts[i];
+            }
+            return null;
+        }
+
+        function geterror() {
+
+        }
+
+        function loginSCB(data) {
+            swal("! כניסתך מורשת", "ברוך הבא", "success");
+            $("#managerDiv").hide();
+            $("#managerPage").show();
+          
+        }
+        
+        function loginECB(err) {
+            swal("! כניסתך נדחיתה", "נסה שנית", "error");
+        }
+
+        function onSubmitFunc() {
+            
+            let discounttoSave = {
+                Code : $("#code").val(),
+                CityFrom : $("#cityFrom").val(),
+                CityTo : $("#cityTo").val(),
+                TimeOut : $("#timeOut").val(),
+                TimeIn : $("#timeIn").val(),
+                CompanyDiscount : $("#companyDiscount").val(),
+            }
+
+              
+            // add a new Car record to the server
+            //if (mode == "edit")
+            //    ajaxCall("PUT", "../api/cars", JSON.stringify(cartoSave), updateSuccess, error);
+             if (mode == "new")
+                 ajaxCall("POST", "../api/discounts", JSON.stringify(discounttoSave), insertSuccess, geterror);
+            return false;   
+        }
+
+        function insertSuccess(discountdata) {
+            $("#pForm").show();
+            tbl.clear();
+            redrawTable(tbl, discountdata);
+            buttonEvents();
+            $("#editDiv").hide();
+            swal("Inserted Successfuly!", "Great Job", "success");
+            mode = "";
+        }
+
+     
+        function redrawTable(tbl, discountdata) {
+            tbl.clear();
+            for (var i = 0; i < discountdata.length; i++) {
+                tbl.row.add(discountdata[i]);
+            }
+            tbl.draw();
+        }
+
+    </script>
+</head>
+<body>
+   
+
+    <div class="tm-main-content" id="top">
+        <div id="searchDiv">
+
+            <div class="tm-top-bar-bg"></div>
+            <div class="tm-top-bar" id="tm-top-bar">
+
+                <!--***************************************Top Navbar*********************************************-->
+                <div class="container">
+                    <div class="row">
+
+                        <nav class="navbar navbar-expand-lg narbar-light">
+                            <a class="navbar-brand mr-auto" href="#">
+                                <img src="img/tisotlogo.png" alt="Site logo" style="width:15%">
+                                Tisot
+                            </a>
+                            <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#top">Home <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tm-section-4">Result</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" onclick="hideSearch()">Manager</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!--***************************************section-1*********************************************-->
+            <div class="tm-section tm-bg-img" id="tm-section-1">
+                <div class="tm-bg-white ie-container-width-fix-2">
+                    <div class="container ie-h-align-center-fix">
+                        <div class="row">
+                            <div class="col-xs-12 ml-auto mr-auto ie-container-width-fix">
+                                <form action="index.html" method="get" class="tm-search-form tm-section-pad-2">
+                                    <div class="form-row tm-search-form-row">
+                                        <div class="form-group tm-form-element tm-form-element-100">
+                                            <i class="fa fa-map-marker fa-2x tm-form-element-icon"></i>
+                                            <input name="city" type="text" class="form-control" placeholder="From" list="from" id="fromTB"><datalist id="from"></datalist>
+                                        </div>
+                                        <div class="form-group tm-form-element tm-form-element-100">
+                                            <i class="fa fa-map-marker fa-2x tm-form-element-icon"></i>
+                                            <input name="city" type="text" class="form-control" placeholder="To" list="from" id="toTB"><datalist id="to"></datalist>
+
+                                        </div>
+                                        <div class="form-group tm-form-element tm-form-element-50">
+                                            <i class="fa fa-calendar fa-2x tm-form-element-icon"></i>
+                                            <input class="form-control" type="date" id="dateFromTB" value="">
+                                        </div>
+                                        <div class="form-group tm-form-element tm-form-element-50">
+                                            <i class="fa fa-calendar fa-2x tm-form-element-icon"></i>
+                                            <input class="form-control" type="date" id="dateToTB" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-row tm-search-form-row">
+                                        <div class="form-group tm-form-element tm-form-element-2">
+                                            <input class="btn btn-primary tm-btn-search" type="button" id="getairports" onclick="addAirport()" value="Get Airports">
+                                        </div>
+
+                                        <div class="form-group tm-form-element tm-form-element-2">
+                                            <input class="btn btn-primary tm-btn-search" type="button" id="getairlines" onclick="addAirline()" value="Get Airlines">
+
+                                        </div>
+
+
+                                        <div class="form-group tm-form-element tm-form-element-2">
+                                            <input type="button" id="searchBTN" value="Search" class="btn btn-primary tm-btn-search">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-row clearfix pl-2 pr-2 tm-fx-col-xs">
+                                        
+                                        <a href="#" class="ie-10-ml-auto ml-auto mt-1 tm-font-semibold tm-color-primary">Need Help?</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--***************************************section-4*********************************************-->
+            <div class="tm-section tm-section-pad tm-bg-gray" id="tm-section-4">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-recommended-container">
+                            <div class="tm-bg-white">
+                                <div class="tm-bg-primary tm-sidebar-pad">
+                                    <h3 class="tm-color-white tm-sidebar-title">Result</h3>
+
+                                </div>
+                                <div class="tm-sidebar-pad-2">
+                                    <a href="#" class="media tm-media tm-recommended-item">
+
+                                        <div class="media-body tm-media-body tm-bg-gray">
+                                            <div id="ph">
+
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--***************************************Manager Login*********************************************-->
+        <div id="managerDiv">
+            <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+                <div class="wrapper wrapper--w680">
+                    <div class="card card-1">
+                        <div class="card-heading"></div>
+                        <div class="card-body">
+                            <h2 class="title">Manager Access</h2>
+
+                            <form action="" id="loginForm">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Username" name="username" id="username" required>
+                                </div>
+                                <div class="input-group">
+                                    <input class="input--style-1" type="password" placeholder="Password" id="pwd" name="pwd" required>
+                                </div>
+
+                                <div class="p-t-20">
+                                    <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="vendor/select2/select2.min.js"></script>
+          
+
+
+            <!-- Main JS-->
+            <script src="js/global.js"></script>
+
+
+        </div>
+
+        <!--***************************************Manager Page*********************************************-->
+        <div id="managerPage">
+            <div id="managerPageDiv">
+                <h2 style="color:white">Manager Page</h2>
+                <p></p>
+
+                <div class="ManagerPagecon">
+                    <div class="vertical-center">
+                        <input class="btn btn-primary tm-btn-search" type="button" id="flightTableBTN" onclick="managerPage()" value="Flight Table">
+                        <input class="btn btn-primary tm-btn-search" type="button" id="flightTableBTN" onclick="discountTable()" value="Discount Table">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!--***************************************flightTable-manager*********************************************-->
+        <form id="pForm">
+            <table id="flightTable" class="display nowrap">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>AirportOut</th>
+                        <th>Airportin</th>
+                        <th>TimeOut</th>
+                        <th>TimeIn</th>
+                        <th>Duration</th>
+                        <th>Cost</th>
+                        <th>Stop</th>
+                        <th>Name</th>
+                        <th>Email</th>
+
+                    </tr>
+                </thead>
+            </table>
+
+        </form>
+
+        <!--***************************************DiscountTable-manager*********************************************-->
+        <div id="discountPage">
+
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Discount DataTable </a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container">
+                <input type="button" value="New" class="btn btn-primary btn-lg" id="newBTN" />
+                <form id="pForm">
+                    <table id="discountsTable" class="display nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Id</th>
+                                <th>Code</th>
+                                <th>City From</th>
+                                <th>City To</th>
+                                <th>Time Out</th>
+                                <th>Time In</th>
+                                <th>Discount</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </form>
+                <!--***************************************editDiv-manager*********************************************-->
+
+                <div id="editDiv">
+                    <form id="discountForm">
+                        <div class="form-group row">
+                            <div class="form-group col-sm-3">
+                                <label for="Code"><span class="red-star">★ </span>Code</label>
+                                <input type="text" class="form-control" id="code" placeholder="Enter the Code " required>
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <label for="cityFrom"><span class="red-star">★ </span>City From</label>
+                                <input type="text" class="form-control" id="cityFrom" placeholder="Enter the city from" required>
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <label for="cityTo"><span class="red-star">★ </span>City To</label>
+                                <input type="text" class="form-control" id="cityTo" placeholder="Enter the city to" required>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label for="timeOut"><span class="red-star">★ </span>time Out</label>
+                                <input type="text" class="form-control" id="timeOut" placeholder="Enter the time Out" required>
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-3">
+                                <label for="timeIn"><span class="red-star">★ </span>time In</label>
+                                <input type="text" class="form-control" id="timeIn" placeholder="Enter the time In" required>
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <label for="companyDiscount"><span class="red-star">★ </span>company Discount</label>
+                                <input type="text" class="form-control" id="companyDiscount" placeholder="Enter the company Discount" required>
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg" id="saveBTN">Save</button>
+                        <input type="button" class="btn btn-warning btn-lg" id="cancelSaveBTN" value="Cancel" />
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!--***************************************book div*********************************************-->
+        <div id="bookDiv">
+            <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+                <div class="wrapper wrapper--w680">
+                    <div class="card card-1">
+                        <div class="card-heading"></div>
+                        <div class="card-body">
+                            <h2 class="title">Registration Info</h2>
+                            <form action="" id="bookForm">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" id="bookName" placeholder="NAME" name="name" required>
+                                </div>
+                                <div class="input-group">
+                                    <input class="input--style-1" type="email" id="bookEmail" placeholder="EMAIL" name="email" required>
+                                </div>
+                                <div>
+                                    I AGREE <input type="checkbox" style="width:10%" required>
+                                </div>
+                                <div class="p-t-20">
+                                    <button class="btn btn--radius btn--green" type="reset" style="background-color:red">Clear</button>
+                                </div>
+                                <div class="p-t-20">
+                                    <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="vendor/select2/select2.min.js"></script>
+            <script src="vendor/datepicker/moment.min.js"></script>
+
+
+            <!-- Main JS-->
+            <script src="js/global.js"></script>
+
+        </div>
+
+        <footer class="tm-bg-dark-blue">
+            <div class="container">
+                <div class="row">
+                    <p class="col-sm-12 text-center tm-font-light tm-color-white p-4 tm-margin-b-0">
+                        Copyright &copy; <span class="tm-current-year">2020</span> Tisot Asaf & Shachar
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="Flights.html">Home page</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- load JS files -->
+    <!--<script src="js/jquery-1.11.3.min.js"></script>-->             <!-- jQuery (https://jquery.com/download/) -->
+    <script src="js/popper.min.js"></script>                    <!-- https://popper.js.org/ -->
+    <script src="js/bootstrap.min.js"></script>                 <!-- https://getbootstrap.com/ -->
+    <script src="js/datepicker.min.js"></script>                <!-- https://github.com/qodesmith/datepicker -->
+    <script src="js/jquery.singlePageNav.min.js"></script>      <!-- Single Page Nav (https://github.com/ChrisWojcik/single-page-nav) -->
+    <script src="slick/slick.min.js"></script>                  <!-- http://kenwheeler.github.io/slick/ -->
+    <script>
+
+        function setCarousel() {
+
+            if ($('.tm-article-carousel').hasClass('slick-initialized')) {
+                $('.tm-article-carousel').slick('destroy');
+            }
+
+            if ($(window).width() < 438) {
+                // Slick carousel
+                $('.tm-article-carousel').slick({
+                    infinite: false,
+                    dots: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                });
+            }
+            else {
+                $('.tm-article-carousel').slick({
+                    infinite: false,
+                    dots: true,
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                });
+            }
+        }
+
+        function setPageNav() {
+            if ($(window).width() > 991) {
+                $('#tm-top-bar').singlePageNav({
+                    currentClass: 'active',
+                    offset: 79
+                });
+            }
+            else {
+                $('#tm-top-bar').singlePageNav({
+                    currentClass: 'active',
+                    offset: 65
+                });
+            }
+        }
+
+        
+
+        $(document).ready(function () {
+
+            $(window).on("scroll", function () {
+                if ($(window).scrollTop() > 100) {
+                    $(".tm-top-bar").addClass("active");
+                } else {
+                    //remove the background property so it comes transparent again (defined in your css)
+                    $(".tm-top-bar").removeClass("active");
+                }
+            });
+
+
+            // Slick carousel
+            setCarousel();
+            setPageNav();
+
+            $(window).resize(function () {
+                setCarousel();
+                setPageNav();
+            });
+
+            // Close navbar after clicked
+            $('.nav-link').click(function () {
+                $('#mainNav').removeClass('show');
+            });
+
+            
+
+            // Update the current year in copyright
+            $('.tm-current-year').text(new Date().getFullYear());
+        });
+
+    </script>
+
+
+
+</body>
+</html>
