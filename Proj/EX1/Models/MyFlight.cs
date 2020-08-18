@@ -10,8 +10,7 @@ namespace EX1.Models
     {
 
         private static List<MyFlight> myFlightlist = new List<MyFlight>();
-        string name;
-        string email;
+        
         string id;
         string airportOut;
         string airportin;
@@ -20,6 +19,8 @@ namespace EX1.Models
         string duration;
         string cost;
         string stop;
+        string name;
+        string email;
 
         public MyFlight(string id, string airportOut, string airportin, string timeOut, string timeIn, string duration, string cost, string stop, string name, string email)
         {

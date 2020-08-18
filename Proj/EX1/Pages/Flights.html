@@ -93,7 +93,7 @@
 
         #bigdiv {
             width: 800px;
-            height: 60px;
+            height: 70px;
             text-align: center;
             background-color: #e8e8e8;
             border: solid #c8c8c8 1px;
@@ -111,7 +111,7 @@
         }
 
         .box {
-            width: 110px;
+            width: 99px;
         }
 
         #managerPage {
@@ -142,6 +142,13 @@
             font-size: 12px;
             cursor: pointer;
         }
+        .buttonb  {
+          
+        }
+            .buttonb img {
+                width: 25px;
+            }
+
 
         .button4 {
             border-radius: 12px;
@@ -264,6 +271,13 @@
             return convdataTime;
         }
 
+        function convertToHumanTimeH(unixTimeStamp) {
+            var date = new Date(unixTimeStamp * 1000);
+            var hours = date.getHours();
+
+            return hours;
+        }
+
 
         function getFlight() {
             let from = $("#fromTB").val();
@@ -329,57 +343,62 @@
             $("#searchDiv").hide();
             $("#bookDiv").show();
 
-            let id = flightData[num].id;
-            let airportOut = flightData[num].flyFrom;
-            let airportin = flightData[num].flyTo;
-            let timeOut = convertToHumanTime(flightData[num].dTime);
-            let timeIn = convertToHumanTime(flightData[num].aTime);
-            let duration = ((flightData[num].duration.total) / 3600);
-            let cost = flightData[num].price;
-            let stop = flightData[num].route.length;
+            //let id = flightData[num].id;
+            //let airportOut = flightData[num].flyFrom;
+            //let airportin = flightData[num].flyTo;
+            //let timeOut = convertToHumanTime(flightData[num].dTime);
+            //let timeIn = convertToHumanTime(flightData[num].aTime);
+            //let duration = ((flightData[num].duration.total) / 3600);
+            //let cost = flightData[num].price;
+            //let stop = flightData[num].route.length;
+            //let name = "aa"
+            //let email = "bb@vb"
 
-            flight = {
-                Id: id,
-                AirportOut: airportOut,
-                Airportin: airportin,
-                TimeOut: timeOut,
-                TimeIn: timeIn,
-                Duration: duration,
-                Cost: cost,
-                Stop: stop
-            }
+
+            //flight = {
+            //    Id: id,
+            //    AirportOut: airportOut,
+            //    Airportin: airportin,
+            //    TimeOut: timeOut,
+            //    TimeIn: timeIn,
+            //    Duration: duration,
+            //    Cost: cost,
+            //    Stop: stop,
+            //    Name: name,
+            //    Email: email
+            //}
            
 
-            ajaxCall("POST", "../api/Myflights", JSON.stringify(flight), postSuccessCB, postErrorCB);
+            //ajaxCall("POST", "../api/Myflights", JSON.stringify(flight), postSuccessCB, postErrorCB);
 
-            for (var i = 0; i < flightData[num].route.length; i++) {
+            //for (var i = 0; i < flightData[num].route.length; i++) {
 
-                let id = flightData[num].route[i].id;
-                let flightid = flightData[num].id;
-                let legnum = i + 1;
-                let flightno = flightData[num].route[i].flight_no;
-                let airportOut = flightData[num].route[i].flyFrom;
-                let airportin = flightData[num].route[i].flyTo;
-                let airlinecode = flightData[num].route[i].airline;
-                let timeOut = convertToHumanTime(flightData[num].route[i].dTime);
-                let timeIn = convertToHumanTime(flightData[num].route[i].aTime);
-                let duration = 5; /****************************************/
+            //    let id = flightData[num].route[i].id;
+            //    let flightid = flightData[num].id;
+            //    let legnum = i + 1;
+            //    let flightno = flightData[num].route[i].flight_no;
+            //    let airportOut = flightData[num].route[i].flyFrom;
+            //    let airportin = flightData[num].route[i].flyTo;
+            //    let airlinecode = flightData[num].route[i].airline;
+            //    let timeOut = convertToHumanTime(flightData[num].route[i].dTime);
+            //    let timeIn = convertToHumanTime(flightData[num].route[i].aTime);
+            //    let duration = 5; /****************************************/
 
-                leg = {
-                    Id: id,
-                    Flightid: flightid,
-                    Legnum: legnum,
-                    Flightno: flightno,
-                    AirportOut: airportOut,
-                    Airportin: airportin,
-                    Airlinecode: airlinecode,
-                    TimeOut: timeOut,
-                    TimeIn: timeIn,
-                    Duration: duration,
-                }
+            //    leg = {
+            //        Id: id,
+            //        Flightid: flightid,
+            //        Legnum: legnum,
+            //        Flightno: flightno,
+            //        AirportOut: airportOut,
+            //        Airportin: airportin,
+            //        Airlinecode: airlinecode,
+            //        TimeOut: timeOut,
+            //        TimeIn: timeIn,
+            //        Duration: duration,
+            //    }
 
-                ajaxCall("POST", "../api/Legs", JSON.stringify(leg), postSuccessCB, postErrorCB);
-            }
+            //    ajaxCall("POST", "../api/Legs", JSON.stringify(leg), postSuccessCB, postErrorCB);
+            //}
 
         }
 
@@ -397,14 +416,62 @@
                     '<tdiv id="dateName' + i + '" class="box">' + convertToHumanTime(flightData[i].dTime) + '</tdiv>' +
                     '<tdiv id="stopName' + i + '" class="box">' + stops(flightData[i].route) + '</tdiv>' +
                     '<tdiv id="priceName' + i + '" class="box">' + flightData[i].price + '€</tdiv>' +
-                    '<tdiv id="book" class="box" style="margin:-5px"><button id="addF" class="button button4" onclick="addFlight(' + i + ')">Add</button>' +
-                    '</tdiv></tdiv></tdiv>';
+                    '<tdiv id="book" class="box" ><button id="addF" class="buttonb" onclick="addFlight(' + i + ')"> <img src="images/booknow.gif" /> </button></tdiv>';
+                if (checkDuration(i)) {
+                    str += '<tdiv id="plus" class="box"><button id="plusF" class="buttonb" onclick="tisotpluspage('+i+')"> <img src="images/specieloffer.gif" /></button> </tdiv>';
+                }
+                str += '</tdiv></tdiv>';
+                
             }
             str += '</tdiv >';
             document.getElementById("ph").innerHTML = str;
+           
+        }
+       
+        var longestStopArr= [];
+        function checkDuration(num) {
+            max = 0;
+            for (var i = 0; i < flightData[num].route.length-1; i++) {
+                temp = flightData[num].route[i + 1].dTime - flightData[num].route[i].aTime;
+                ahour = convertToHumanTimeH(flightData[num].route[i].aTime);
+                if (max < temp) {
+                   
+                    if ((ahour < 10 && ahour>6)) {
+                        max = temp;
+                        longestStopArr[num] = [];
+                        longestStopArr[num][0] = flightData[num].route[i].cityTo; // city
+                        longestStopArr[num][1] = max / 3600; // stop duration
+                        longestStopArr[num][2] = flightData[num].route[i].aTime; // a time
+                        longestStopArr[num][3] = flightData[num].route[i + 1].dTime; // d time
+                    }
+                    if (temp>20*3600) {
+                        max = temp;
+                        longestStopArr[num] = [];
+                        longestStopArr[num][0] = flightData[num].route[i].cityTo; // city
+                        longestStopArr[num][1] = max / 3600; // stop duration
+                        longestStopArr[num][2] = flightData[num].route[i].aTime; // a time
+                        longestStopArr[num][3] = flightData[num].route[i + 1].dTime; // d time
+                    }
+                    
+                }
+            }
+            max = max / 3600;
+            if (max>8) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
-
+        function tisotpluspage(num) {
+            longestStopArr[num];
+            window.localStorage.setItem("stop", JSON.stringify(longestStopArr[num])); // save the longestStopArr to local storage
+            this.close();
+            window.open("TisotPlus.html");
+        
+        }
+      
 
         function successLocalGetCB(data2) {
             document.getElementById("ph").innerHTML = "";
@@ -465,7 +532,7 @@
         }
 
         function Book() {
-
+            
             let id = flightData[booknum].id;
             let airportOut = flightData[booknum].flyFrom;
             let airportin = flightData[booknum].flyTo;
@@ -474,6 +541,8 @@
             let duration = ((flightData[booknum].duration.total) / 3600);
             let cost = flightData[booknum].price;
             let stop = flightData[booknum].route.length;
+            let name = $("#bookName").val()
+            let email = $("#bookEmail").val()
 
             flight = {
                 Id: id,
@@ -484,23 +553,23 @@
                 Duration: duration,
                 Cost: cost,
                 Stop: stop,
-                Name: $("#bookName").val(),
-                Email: $("#bookEmail").val()
+                Name: name,
+                Email: email
             }
 
             ajaxCall("POST", "../api/Myflights", JSON.stringify(flight), bookSCB, bookECB);
+         
+            for (var i = 0; i < flightData[booknum].route.length; i++) {
 
-            for (var i = 0; i < flightData[num].route.length; i++) {
-
-                let id = flightData[num].route[i].id;
-                let flightid = flightData[num].id;
+                let id = flightData[booknum].route[i].id;
+                let flightid = flightData[booknum].id;
                 let legnum = i + 1;
-                let flightno = flightData[num].route[i].flight_no;
-                let airportOut = flightData[num].route[i].flyFrom;
-                let airportin = flightData[num].route[i].flyTo;
-                let airlinecode = flightData[num].route[i].airline;
-                let timeOut = convertToHumanTime(flightData[num].route[i].dTime);
-                let timeIn = convertToHumanTime(flightData[num].route[i].aTime);
+                let flightno = flightData[booknum].route[i].flight_no;
+                let airportOut = flightData[booknum].route[i].flyFrom;
+                let airportin = flightData[booknum].route[i].flyTo;
+                let airlinecode = flightData[booknum].route[i].airline;
+                let timeOut = convertToHumanTime(flightData[booknum].route[i].dTime);
+                let timeIn = convertToHumanTime(flightData[booknum].route[i].aTime);
                 let duration = 5; /****************************************/
 
                 leg = {
@@ -517,18 +586,20 @@
                 }
 
                 ajaxCall("POST", "../api/Legs", JSON.stringify(leg), postSuccessCB, postErrorCB);
+               
             }
 
             return false;
         }
 
-        function bookS() {
-            
-            //swal("! תודה על קנייתך", "נציג ייצור איתך קשר בהקדם", "success");
-            alert("ok");
-            //$("#bookDiv").hide();
-            //$("#searchDiv").show();
+        function bookSCB(data) {
+       
+            swal("! תודה על קנייתך", "נציג ייצור איתך קשר בהקדם", "success");
+          
+            $("#bookDiv").hide();
+            $("#searchDiv").show();
         }
+      
 
         function bookECB(err) {
             swal("! עסקה לא אושרה", "נסה שנית", "error");
@@ -766,7 +837,7 @@
 
     </script>
 </head>
-<body>
+<body >
    
 
     <div class="tm-main-content" id="top">
@@ -781,8 +852,7 @@
 
                         <nav class="navbar navbar-expand-lg narbar-light">
                             <a class="navbar-brand mr-auto" href="#">
-                                <img src="img/tisotlogo.png" alt="Site logo" style="width:15%">
-                                Tisot
+                                <img src="images/tisot.png" alt="Site logo" style="width: 165px;">
                             </a>
                             <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -1079,7 +1149,7 @@
             <script src="vendor/datepicker/moment.min.js"></script>
 
 
-            <!-- Main JS-->
+             Main JS
             <script src="js/global.js"></script>
 
         </div>

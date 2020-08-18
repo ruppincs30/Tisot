@@ -11,6 +11,7 @@ body {
 	font-size: 13px;
 	font-weight: 400;
 	overflow-x: hidden;
+	background-color: #f2f2f2;
 }
 
 a, button { transition: all 0.3s ease; }
@@ -114,7 +115,7 @@ p {
 }
 
 .tm-top-bar.active {
-	height: 79px;
+	height: 90px;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
 }
 
@@ -129,6 +130,11 @@ p {
 
 #tm-section-1 {	
 	background-image: url('../img/bg-img-1.jpg');	
+	height: 515px;
+}
+
+#tm-section-2 {
+	background-image: url('../img/bg-img-1.jpg');
 	height: 515px;
 }
 
