@@ -146,7 +146,19 @@
           
         }
             .buttonb img {
-                width: 25px;
+                width: 95px;
+                
+                position: relative;
+                
+                top: -13px;
+            }
+        .buttonbb {
+        }
+
+            .buttonbb img {
+                width: 75px;
+                position: relative;
+                top: -23px;
             }
 
 
@@ -418,7 +430,7 @@
                     '<tdiv id="priceName' + i + '" class="box">' + flightData[i].price + '€</tdiv>' +
                     '<tdiv id="book" class="box" ><button id="addF" class="buttonb" onclick="addFlight(' + i + ')"> <img src="images/booknow.gif" /> </button></tdiv>';
                 if (checkDuration(i)) {
-                    str += '<tdiv id="plus" class="box"><button id="plusF" class="buttonb" onclick="tisotpluspage('+i+')"> <img src="images/specieloffer.gif" /></button> </tdiv>';
+                    str += '<tdiv id="plus" class="box"><button id="plusF" class="buttonbb" onclick="tisotpluspage('+i+')"> <img src="images/specieloffer.gif" /></button> </tdiv>';
                 }
                 str += '</tdiv></tdiv>';
                 
