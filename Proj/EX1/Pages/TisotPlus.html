@@ -93,8 +93,7 @@
                 }
 
                 #bookDiv {
-                    padding-right: 100px;
-                    padding-left: 50px;
+                   
                 }
 
                 #a {
@@ -306,6 +305,17 @@
                     padding-top: 70px;
                     font-size: 1.2em;
                 }
+        #btnCheckOut {
+            background-color: #b2b2b2;
+            border: none;
+            color: white;
+            display: inline-block;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 12px;
+            width: 300px;
+            height: 55px;
+        }   
     </style>
 
     <script>
@@ -389,7 +399,7 @@
         var currency;
         function daytour(num) {
             $("#mainDiv").hide();
-            $("#bookDiv").hide();
+            $("#hotToursDiv").hide();
             $("#informationPage").show();
             adultPrice = Number(triposoData3.results[num].price["amount"]);
             childPrice = Number(triposoData3.results[num].price["amount"] / 2);
@@ -398,11 +408,9 @@
             document.getElementById("infoIntro").innerHTML = triposoData3.results[num].intro;
             document.getElementById("adultPrice").innerHTML = "Adult (16+): " + adultPrice + " " + triposoData3.results[num].price["currency"];
             document.getElementById("childPrice").innerHTML = "Child (0-16): " + childPrice + " " + triposoData3.results[num].price["currency"];
-            document.getElementById("totalPrice").innerHTML = "<div>Total Tour Price: 0" + " " + currency + "</div> " +
-                "<div>Flight Price: " + flightPrice + " " + currency + "</div>" + "<div>Final Price: " + flightPrice + " " + currency + "</div>";
-
-
-
+            
+            //document.getElementById("totalPrice").innerHTML = "<div>Total Tour Price: 0" + " " + currency + "</div> " +
+            //    "<div>Flight Price: " + flightPrice + " " + currency + "</div>" + "<div>Final Price: " + flightPrice + " " + currency + "</div>";
 
         }
 
@@ -429,54 +437,81 @@
             return convdataTime;
         }
         var number;
-        var totalPrice = 0;//adult+child
+        var tourTotalPrice = 0;//adult+child
         var totalAdultPrice = 0;
         var totalChildPrice = 0;
         var finalPrice = 0;//flightPrice+ totalPrice
+        var finalFlightPrice = 0;
+
         function plusminusAdult(num) {
             number = Number(document.getElementById("adult").textContent);
             number += num;
             totalAdultPrice += num * adultPrice;
+            
 
-            if (number <= 0) {
+            if (number < 0) {
                 document.getElementById("adult").innerHTML = 0;
+                totalAdultPrice = 0;
+               
             }
             else {
                 document.getElementById("adult").innerHTML = number;
+                finalFlightPrice += num * flightPrice;
+                document.getElementById("btnCheckOut").style.backgroundColor = '#65cc69';
+                document.getElementById("btnCheckOut").onclick = 'book(' + finalPrice +')';
+               
             }
-            if (totalAdultPrice <= 0) {
-                totalAdultPrice = 0;
+            if (finalFlightPrice<=0){
+                finalFlightPrice = 0;
+                document.getElementById("btnCheckOut").style.backgroundColor = '#b2b2b2';
+                document.getElementById("btnCheckOut").onclick = "";
+
             }
-            totalPrice = totalAdultPrice + totalChildPrice;
-            finalPrice = totalPrice + flightPrice;
-            document.getElementById("totalPrice").innerHTML = "<div>Total Tour Price: " + totalPrice.toFixed(2) + " " + currency + "</div> " +
-                "<div>Flight Price: " + flightPrice + " " + currency + "</div>" + "<div>Final Price: " + finalPrice.toFixed(2) + " " + currency + "</div>";
+            
+            tourTotalPrice = totalAdultPrice + totalChildPrice;
+            finalPrice = tourTotalPrice + finalFlightPrice;
 
-
+            document.getElementById("totalTourPrice").innerHTML = 'Total Tour Price: ' + tourTotalPrice.toFixed(2) + ' ' + currency;
+            document.getElementById("flightPrice").innerHTML = 'Flight Price: ' + finalFlightPrice + ' ' + currency;
+            document.getElementById("finalPrice").innerHTML = 'Final Price: ' + finalPrice.toFixed(2) + ' ' + currency;
 
         }
 
         function plusminusChild(num) {
-            x = document.getElementById("child").textContent;
-            number = Number(x)
-            number = number + num
+            number = Number(document.getElementById("child").textContent);
+            number += num;
             totalChildPrice += num * childPrice;
+            
 
-            if (number <= 0) {
+            if (number < 0) {
                 document.getElementById("child").innerHTML = 0;
+                totalChildPrice = 0;
             }
             else {
                 document.getElementById("child").innerHTML = number;
+                finalFlightPrice += num * flightPrice;
+                document.getElementById("btnCheckOut").style.backgroundColor = '#65cc69';
+                document.getElementById("btnCheckOut").onclick = 'book(' + finalPrice + ')';
             }
-            totalPrice = totalAdultPrice + totalChildPrice;
-            if (totalChildPrice <= 0) {
-                totalChildPrice = 0;
+            if (finalFlightPrice <= 0) {
+                finalFlightPrice = 0;
+                document.getElementById("btnCheckOut").style.backgroundColor = '#b2b2b2';
+                document.getElementById("btnCheckOut").onclick = "";
             }
-            totalPrice = totalAdultPrice + totalChildPrice;
-            finalPrice = totalPrice + flightPrice;
-            document.getElementById("totalPrice").innerHTML = "<div>Total Tour Price: " + totalPrice.toFixed(2) + " " + currency + "</div> " +
-                "<div>Flight Price: " + flightPrice + " " + currency + "</div>" + "<div>Final Price: " + finalPrice.toFixed(2) + " " + currency + "</div>";
+         
+            tourTotalPrice = totalAdultPrice + totalChildPrice;
+            finalPrice = tourTotalPrice + finalFlightPrice;
+
+
+            document.getElementById("totalTourPrice").innerHTML = 'Total Tour Price: ' + tourTotalPrice.toFixed(2) + ' ' + currency;
+            document.getElementById("flightPrice").innerHTML = 'Flight Price: ' + finalFlightPrice + ' ' + currency;
+            document.getElementById("finalPrice").innerHTML = 'Final Price: ' + finalPrice.toFixed(2) + ' ' + currency;
         }
+        function book(finalFlightPrice) {
+            alert(finalFlightPrice)
+        }
+
+      
 
 
 
@@ -510,7 +545,7 @@
                                         <a class="nav-link" href="#mainDiv">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#bookdiv">Hot Tours</a>
+                                        <a class="nav-link" href="#hotToursDiv">Hot Tours</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" onclick="hideSearch()">Manager</a>
@@ -553,8 +588,8 @@
         </div>
 
 
-        <!--***************************************book div*********************************************-->
-        <div id="bookDiv">
+        <!--***************************************Hot tours div*********************************************-->
+        <div id="hotToursDiv">
             <div class="container-fluid">
                 <div class="row" id="daytours">
                     <div class="col">
@@ -607,12 +642,11 @@
 
                 <div class="row">
 
-
                 </div>
 
             </div>
-
-            <div class="container-fluid">
+            <!--***************************************City Walks div*********************************************-->
+            <div class="container-fluid" id="cityWalks">
                 <div class="row" id="daytours">
                     <div class="col">
                         City Walks
@@ -695,13 +729,21 @@
                         <p>Duration : 8 Hours</p>
                         <p>Start at : 9:00 am </p>
                         <hr style="border: none;height: 3px;background: silver;margin-top: 15px;">
-                        <p style="font-weight: bold; color: black;padding: 20px 0px 15px 0px;">Intro:</p>
+                        <p style="font-weight: bold; color: black;padding: 20px 0px 15px 0px;">Description:</p>
                         <p id="infoIntro"></p>
                         <p style="font-weight: bold; color: black;padding: 20px 0px 15px 0px;">What's included?</p>
-
+                        <p>
+                            Food & drinks <br />
+                            National Park fees<br />
+                            Bottled water<br />
+                            Driver <br />
+                            Live commentary on board<br />
+                            Local guide<br />
+                            Pickup and drop-off from Airport<br />
+                            Transport by air-conditioned minivan
+                        </p>
                     </div>
-                    <!--***************************************book div*********************************************-->
-                    <div id="bookDiv" class="col-6">
+                    <div class="col-6">
                         <div style="border: 1px solid #b6b6b6;border-radius: 15px;">
                             <h2 class="title" style="padding: 10px; background-color: #e1e1e1eb;border-radius: 15px 15px 0px 0px; font-size: 1.1em; padding-left: 30px; border-bottom: 1px solid #b6b6b6; margin:0px;font-weight:bold;">
                                 1. Participants
@@ -747,33 +789,24 @@
                                 2. Price Summary
                             </h2>
                             <div id="totalPrice" class="col-6" style="padding: 10px 0px 10px 50px;">
-                                <div>Total Tour Price: 0</div>
-                                <div>Flight Price: 0</div>
-                                <div>Final Price: 0</div>
+                                <div id="totalTourPrice">Total Tour Price: 0</div>
+                                <div id="flightPrice">Flight Price: 0</div>
+                                <hr style="border: none;height: 1px;background: silver;margin-top: 6px;">
+                                <div id="finalPrice">Final Price: 0</div>
                             </div>
                         </div>
-                            
-
-                            <!--<form action="" id="bookForm">
-            <div class="input-group">
-                <input class="input--style-1" type="text" id="bookName" placeholder="NAME" name="name" required>
-            </div>
-            <div class="input-group">
-                <input class="input--style-1" type="email" id="bookEmail" placeholder="EMAIL" name="email" required>
-            </div>
-            <div>
-                I AGREE <input type="checkbox" style="width:10%" required>
-            </div>
-            <div class="p-t-20">
-                <button class="btn btn--radius btn--green" type="reset" style="background-color:red">Clear</button>
-            </div>
-            <div class="p-t-20">
-                <button class="btn btn--radius btn--green" type="submit">Submit</button>
-            </div>
-
-        </form>-->
+                        <div>
+                            <button id="btnCheckOut">Check Out</button>
                         </div>
+
                     </div>
+                </div>
+            </div>
+
+            <!--***************************************Book Page*********************************************-->
+            <div id="bookDiv">
+
+
             </div>
 
 
