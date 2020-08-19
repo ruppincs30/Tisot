@@ -397,6 +397,8 @@
         var childPrice;
         var adultPrice;
         var currency;
+        var adultCount=0;
+        var childCount=0;
         function daytour(num) {
             $("#mainDiv").hide();
             $("#hotToursDiv").hide();
@@ -447,16 +449,17 @@
             number = Number(document.getElementById("adult").textContent);
             number += num;
             totalAdultPrice += num * adultPrice;
-            
 
             if (number < 0) {
                 document.getElementById("adult").innerHTML = 0;
                 totalAdultPrice = 0;
+                adultCount = 0;
                
             }
             else {
                 document.getElementById("adult").innerHTML = number;
                 finalFlightPrice += num * flightPrice;
+                adultCount += num;
                 document.getElementById("btnCheckOut").style.backgroundColor = '#65cc69';
                 document.getElementById("btnCheckOut").onclick = 'book(' + finalPrice +')';
                
@@ -471,7 +474,7 @@
             tourTotalPrice = totalAdultPrice + totalChildPrice;
             finalPrice = tourTotalPrice + finalFlightPrice;
 
-            document.getElementById("totalTourPrice").innerHTML = 'Total Tour Price: ' + tourTotalPrice.toFixed(2) + ' ' + currency;
+            document.getElementById("totalTourPrice").innerHTML = 'Total Tour Price: ' + adultPrice + "x" + adultCount + " Adults + " + childPrice + "x" + childCount+"Childs =" +tourTotalPrice.toFixed(2) + ' ' + currency;
             document.getElementById("flightPrice").innerHTML = 'Flight Price: ' + finalFlightPrice + ' ' + currency;
             document.getElementById("finalPrice").innerHTML = 'Final Price: ' + finalPrice.toFixed(2) + ' ' + currency;
 
@@ -486,10 +489,12 @@
             if (number < 0) {
                 document.getElementById("child").innerHTML = 0;
                 totalChildPrice = 0;
+               childCount = 0;
             }
             else {
                 document.getElementById("child").innerHTML = number;
                 finalFlightPrice += num * flightPrice;
+                childCount += num;
                 document.getElementById("btnCheckOut").style.backgroundColor = '#65cc69';
                 document.getElementById("btnCheckOut").onclick = 'book(' + finalPrice + ')';
             }
@@ -503,7 +508,7 @@
             finalPrice = tourTotalPrice + finalFlightPrice;
 
 
-            document.getElementById("totalTourPrice").innerHTML = 'Total Tour Price: ' + tourTotalPrice.toFixed(2) + ' ' + currency;
+            document.getElementById("totalTourPrice").innerHTML = 'Total Tour Price: ' + adultPrice + "x" + adultCount + " Adults + " + childPrice + "x" + childCount + "Childs =" + tourTotalPrice.toFixed(2) + ' ' + currency;
             document.getElementById("flightPrice").innerHTML = 'Flight Price: ' + finalFlightPrice + ' ' + currency;
             document.getElementById("finalPrice").innerHTML = 'Final Price: ' + finalPrice.toFixed(2) + ' ' + currency;
         }
