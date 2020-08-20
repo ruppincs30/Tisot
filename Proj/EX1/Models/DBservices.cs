@@ -513,7 +513,75 @@ public class DBservices
 
 
 
+    //****************************************************************************
+
+    //--------------------------------------------------------------------------------------------------
+    // This method inserts a payment to the payment table 
+    //--------------------------------------------------------------------------------------------------
+    public int insertPayments(Payment payment)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildInsertCommandmyPayment(payment);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String payment
+    //--------------------------------------------------------------------
+    private String BuildInsertCommandmyPayment(Payment payment)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}')", payment.Name, payment.Email, payment.Owner, payment.Cvv, payment.CardNumber, payment.ExpirationDate, payment.Amount);
+        String prefix = "INSERT INTO Payments_CS " + "(Name, Email, Owner, Cvv, CardNumber, ExpirationDate, Amount) ";
+        command = prefix + sb.ToString();
+
+        return command;
+    }
+
+
+
 }
+
+
 
 
 

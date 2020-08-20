@@ -321,6 +321,7 @@
             height: 55px;
         }
     </style>
+   
 
     <script>
         var triposoData, triposoData1, triposoData2, triposoData3
@@ -364,7 +365,7 @@
                 console.log(err);
             });
 
-            var triposoQueryURL3 = 'https://www.triposo.com/api/20200803/tour.json?location_ids=' + longestStopArr[0] + '&&count=4&fields=id,name,score,price,price_is_per_person,vendor,intro,tag_labels&order_by=-score&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+            var triposoQueryURL3 = 'https://www.triposo.com/api/20200803/tour.json?location_ids=' + longestStopArr[0] + '&count=4&fields=id,name,score,price,price_is_per_person,vendor,intro,tag_labels&order_by=-score&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
             $.get(triposoQueryURL3).done((data) => {
                 triposoData3 = data;
 
@@ -387,9 +388,14 @@
             adtimefunc();
             $("#informationPage").hide();
             $("#bookDiv").hide();
+            $("#tourCompanyPage").hide();
+            $("#tourCompanyForm").submit(confirmTour);
 
 
         });
+        
+
+       
 
         function adtimefunc() {
             document.getElementById("atime").innerHTML = 'Arriving ' + arrivalTime;
@@ -533,6 +539,62 @@
 
         }
 
+        function tourCompany() {
+            
+            $("#mainDiv").hide(); 
+            $("#hotToursDiv").hide();
+            $("#informationPage").hide();
+            $("#bookDiv").hide();
+            $("#adtime").hide();
+            $("#tourCompanyPage").show();
+
+        }
+
+        var triposoData4
+        function restaurantGetApi() {
+            var checkBox = document.getElementById("food");
+            var cityTour = document.getElementById("cityTour").value;
+            cityTour = cityTour.charAt(0).toUpperCase() + cityTour.slice(1);
+           
+            if (checkBox.checked == true) {
+                var triposoQueryURL4 = 'https://www.triposo.com/api/20200803/poi.json?location_id=' + cityTour + '&tag_labels=eatingout&count=10&fields=name&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+
+                $.get(triposoQueryURL4).done((data) => {
+                    triposoData4 = data.results;
+                    str = 'Our top 10 restaurants in ' + cityTour +': <select id ="year" style="left: 83px;width: 200px;border-radius: 12px;position:relative;">';
+                    if (triposoData4.length != 0) {
+                        for (var i = 0; i < triposoData4.length; i++) {
+                            str += ' <option value="'+triposoData4[i].name+'">' + triposoData4[i].name+'</option>';
+                           
+                        }
+                        str += ' </select>';
+                        document.getElementById("restaurantList").innerHTML = str;
+
+                    }
+                    else {
+                        swal("! בדוק את שם העיר", "נסה שנית", "error");
+                        checkBox.checked = false;
+                    }
+
+                });
+                $.get(triposoQueryURL4).fail((err) => {
+                    swal("! בדוק את שם העיר", "נסה שנית", "error");
+                });
+                
+            }
+            else {
+                document.getElementById("restaurantList").innerHTML = "";
+
+            }
+
+        }
+
+        function confirmTour() {
+            alert("פה")
+        }
+
+
+
 
 
 
@@ -570,7 +632,7 @@
                                         <a class="nav-link" href="#hotToursDiv">Hot Tours</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" onclick="hideSearch()">Manager</a>
+                                        <a class="nav-link" onclick="tourCompany()">Tour Company</a>
                                     </li>
 
                                 </ul>
@@ -835,14 +897,14 @@
                         <h1>Confirm Purchase</h1>
                     </div>
                     <div class="payment">
-                        <form>
+                        <form id="creditForm">
                             <div class="form-group name">
                                 <label for="a">Full name</label>
-                                <input type="text" class="form-control" id="name">
+                                <input type="text" class="form-control" id="formName">
                             </div>
                             <div class="form-group email">
                                 <label for="a" style="margin-left: 10px; ">Email</label>
-                                <input type="text" class="form-control" id="email" style="margin-left: 10px; ">
+                                <input type="text" class="form-control" id="formEmail" style="margin-left: 10px; ">
                             </div>
                             <div class="form-group owner">
                                 <label for="owner">Owner</label>
@@ -858,7 +920,7 @@
                             </div>
                             <div class="form-group" id="expiration-date">
                                 <label>Expiration Date</label>
-                                <select>
+                                <select id="month">
                                     <option value="01">January</option>
                                     <option value="02">February </option>
                                     <option value="03">March</option>
@@ -872,13 +934,13 @@
                                     <option value="11">November</option>
                                     <option value="12">December</option>
                                 </select>
-                                <select>
-                                    <option value="16"> 2016</option>
-                                    <option value="17"> 2017</option>
-                                    <option value="18"> 2018</option>
-                                    <option value="19"> 2019</option>
+                                <select  id="year">
                                     <option value="20"> 2020</option>
                                     <option value="21"> 2021</option>
+                                    <option value="22"> 2022</option>
+                                    <option value="23"> 2023</option>
+                                    <option value="24"> 2024</option>
+                                    <option value="25"> 2025</option>
                                 </select>
                             </div>
                             <div class="form-group" id="credit_cards">
@@ -897,21 +959,75 @@
                
             </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script src="assets/js/jquery.payform.min.js" charset="utf-8"></script>
             <script src="assets/js/script.js"></script>
 
         </div>
 
 
-                <!--***************************************Manager Page*********************************************-->
-                <div id="managerPage">
+                <!--***************************************Tour Company Page*********************************************-->
+        <div id="tourCompanyPage" style="background-image: url('images/bywallpaper.jpg');background-repeat:no-repeat;padding: 80px 600px 80px 600px;">
 
+            <div class="wrapper wrapper--w680">
+                <div class="card card-1">
+                    <div class="card-body">
+                        <h2 class="title">Register your tour</h2>
+                        <form action="" id="tourCompanyForm">
+                            <div class="input-group">
+                                <input class="input--style-1" type="text" id="companyName" placeholder="Company Name" required>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-1" type="email" id="bookEmail" placeholder="Email" required>
+                            </div>
+                            <div class="input-group">
+                                <input style="text-transform:capitalize" class="input--style-1" type="text" id="cityTour" placeholder="City" required>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-1" type="number" min="1" max="6" id="tourDuration" placeholder="Tour Duration (1-6 Hours)" required>
+                            </div>
+                            <div class="input-group">
+                                <input class="input--style-1" type="number" min="1" max="100" id="tourPrice" placeholder="Price" required>
+                            </div>
 
+                            <textarea rows="4" cols="50" id="tourDescription" style="margin-top: 0px;margin-bottom: 0px;height: 71px;border: none;width: 500px;border-radius: 15px;">Description...</textarea>
+                                
+                            <div style="padding-bottom: 30px;">
+                                <input type="checkbox" id="food" style="width:3%" onclick="restaurantGetApi()">
+                                Restaurant include?
+                                <div id="restaurantList" style="padding-top: 15px; padding-bottom: 40px; "> </div>
+
+                            </div>
+
+                            <div>
+                                <input type="checkbox" style="width:3%" required>
+                                I agree to <a href="">terms and conditions</a> of TisotPlus
+
+                            </div>
+                            <div class="p-t-20">
+                                <button class="btn btn--radius btn--green" type="reset" style="background-color:red">Clear</button>
+                            </div>
+                            <div class="p-t-20">
+                                <button class="btn btn--radius btn--green"  type="submit">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
+            </div>
+        </div>
 
 
 
+
+
+
+
+
+        </div>
+
+
+    <div>
                 <footer class="tm-bg-dark-blue">
                     <div class="container">
                         <div class="row">
@@ -923,7 +1039,7 @@
                         </div>
                     </div>
                 </footer>
-            </div>
+      </div>
 
 
         <!-- load JS files -->

@@ -1,4 +1,4 @@
-$(function() {
+﻿$(function() {
 
     var owner = $('#owner');
     var cardNumber = $('#cardNumber');
@@ -6,6 +6,7 @@ $(function() {
     var CVV = $("#cvv");
     var mastercard = $("#mastercard");
     var confirmButton = $('#confirm-purchase');
+    
     var visa = $("#visa");
     var amex = $("#amex");
 
@@ -55,8 +56,44 @@ $(function() {
         } else if (!isCvvValid) {
             alert("Wrong CVV");
         } else {
-            // Everything is correct. Add your form submission code here.
-            alert("Everything is correct");
+            
+            let saveToPayment = {
+                Name: $("#formName").val(),
+                Email: $("#formEmail").val(),
+                Owner: $("#owner").val(),
+                Cvv: $("#cvv").val(),
+                CardNumber: $("#cardNumber").val(),
+                ExpirationDate: $("#month option:selected").text() + $("#year option:selected").text(),
+                Amount: finalPrice
+            }
+
+            ajaxCall("POST", "../api/Payments", JSON.stringify(saveToPayment), paySuccess, payError);
+
         }
     });
+
+    function paySuccess() {
+        swal({
+            title: "! תודה על קנייתך",
+            text: "נציג ייצור איתך קשר בהקדם",
+            icon: "success",
+           
+        })
+            .then((value) => {
+
+                window.open("Flights.html");
+                window.close("TisotPlus.html");
+            });
+
+    }
+
+   
+    function payError() {
+        swal("! כניסתך נדחיתה", "נסה שנית", "error");
+    }
+
+  
 });
+
+
+

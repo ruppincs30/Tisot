@@ -276,21 +276,22 @@ input[type="date" i] {
    #FORM
    ========================================================================== */
 input {
-  outline: none;
-  margin: 0;
-  border: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  width: 100%;
-  font-size: 14px;
-  font-family: inherit;
+    outline: none;
+    margin: 0;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+    border-radius: 15px;
 }
 
 .input-group {
   position: relative;
   margin-bottom: 30px;
-  border-bottom: 2px solid #ccc;
+  
 }
 
 .input-icon {
@@ -430,11 +431,11 @@ input {
    #CARD
    ========================================================================== */
 .card {
-  overflow: hidden;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background: #fff;
+    overflow: hidden;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 50px;
+    background: #ffffff85;
 }
 
 .card-1 {

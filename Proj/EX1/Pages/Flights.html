@@ -821,10 +821,6 @@
                 CompanyDiscount : $("#companyDiscount").val(),
             }
 
-              
-            // add a new Car record to the server
-            //if (mode == "edit")
-            //    ajaxCall("PUT", "../api/cars", JSON.stringify(cartoSave), updateSuccess, error);
              if (mode == "new")
                  ajaxCall("POST", "../api/discounts", JSON.stringify(discounttoSave), insertSuccess, geterror);
             return false;   

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,12 +8,12 @@ using EX1.Models;
 
 namespace EX1.Controllers
 {
-    public class LegsController : ApiController 
+    public class PaymentsController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<Leg> Get()
+        public IEnumerable<Payment> Get()
         {
-            return Leg.MyLeg;
+            return Payment.MyPayments;
         }
 
         // GET api/<controller>/5
@@ -24,9 +23,9 @@ namespace EX1.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]Leg leg)
+        public void Post([FromBody] Payment payment)
         {
-            leg.insert();
+            payment.insert();
         }
 
        
