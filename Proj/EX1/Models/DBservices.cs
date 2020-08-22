@@ -570,13 +570,130 @@ public class DBservices
 
         StringBuilder sb = new StringBuilder();
         // use a string builder to create the dynamic string
-        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}')", payment.Name, payment.Email, payment.Owner, payment.Cvv, payment.CardNumber, payment.ExpirationDate, payment.Amount);
-        String prefix = "INSERT INTO Payments_CS " + "(Name, Email, Owner, Cvv, CardNumber, ExpirationDate, Amount) ";
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')", payment.Name, payment.Email, payment.Owner, payment.Cvv, payment.CardNumber, payment.ExpirationDate, payment.Amount,payment.Id, payment.AirportOut, payment.AirportIn, payment.TimeOut, payment.TimeIn);
+        String prefix = "INSERT INTO Payments_CS " + "(Name, Email, Owner, Cvv, CardNumber, ExpirationDate, Amount, id, AirportOut, AirportIn, TimeO, TimeI) ";
         command = prefix + sb.ToString();
 
         return command;
     }
 
+
+
+    //****************************************************************************
+
+    //--------------------------------------------------------------------------------------------------
+    // This method inserts a tour to the tour table 
+    //--------------------------------------------------------------------------------------------------
+    public int insertTours(Tour tour)
+    {
+
+        SqlConnection con;
+        SqlCommand cmd;
+
+        try
+        {
+            con = connect("DBConnectionString"); // create the connection
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+
+        String cStr = BuildInsertCommandmyTour(tour);      // helper method to build the insert string
+
+        cmd = CreateCommand(cStr, con);             // create the command
+
+        try
+        {
+            int numEffected = cmd.ExecuteNonQuery(); // execute the command
+            return numEffected;
+        }
+        catch (Exception ex)
+        {
+            return 0;
+            // write to log
+            throw (ex);
+        }
+
+        finally
+        {
+            if (con != null)
+            {
+                // close the db connection
+                con.Close();
+            }
+        }
+
+    }
+
+    //--------------------------------------------------------------------
+    // Build the Insert command String tour
+    //--------------------------------------------------------------------
+    private String BuildInsertCommandmyTour(Tour tour)
+    {
+        String command;
+
+        StringBuilder sb = new StringBuilder();
+        // use a string builder to create the dynamic string
+        sb.AppendFormat("Values('{0}', '{1}' ,'{2}', '{3}','{4}','{5}','{6}')", tour.CompanyName, tour.Email, tour.City, tour.Duration, tour.Price, tour.Description, tour.Restaurant);
+        String prefix = "INSERT INTO Tours_CS " + "(CompanyName, Email, City, Duration, Price, Description, Restaurant) ";
+        command = prefix + sb.ToString();
+
+        return command;
+    }
+
+
+
+    public List<Tour> getToursByCity(string city)
+    {
+        List<Tour> tourList = new List<Tour>();
+        SqlConnection con = null;
+
+        try
+        {
+            con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
+
+            String selectSTR = "SELECT * FROM Tours_CS where City ='" + city.ToString() +"'";
+            SqlCommand cmd = new SqlCommand(selectSTR, con);
+
+            // get a reader
+            SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
+
+            while (dr.Read())
+            {   // Read till the end of the data into a row
+                Tour t = new Tour(null,null, null, null, null, null, null);
+
+                t.CompanyName = (string)dr["CompanyName"];
+                t.Email = (string)dr["Email"];
+                t.City = (string)dr["City"];
+                t.Duration = (string)dr["Duration"];
+                t.Price = (string)dr["Price"];
+                t.Description = (string)dr["Description"];
+                t.Restaurant = (string)dr["Restaurant"];
+
+                tourList.Add(t);
+            }
+
+            return tourList;
+        }
+        catch (Exception ex)
+        {
+            // write to log
+            throw (ex);
+        }
+        finally
+        {
+            if (con != null)
+            {
+                con.Close();
+            }
+
+        }
+        return tourList;
+
+    }
+     
 
 
 }

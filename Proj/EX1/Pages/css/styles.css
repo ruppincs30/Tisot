@@ -5,6 +5,8 @@
     overflow: hidden;
     padding: 25px;
     color: #4c4e56;
+    border-radius: 30px;
+    font-size:15px;
 }
 
 .creditCardForm label {
@@ -118,3 +120,5 @@
     margin: 5px 0 0 0;
     font-size: 14px;
 }
+
+

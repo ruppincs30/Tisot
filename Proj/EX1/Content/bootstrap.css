@@ -132,8 +132,9 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button;
-  cursor: pointer;
+    -webkit-appearance: button;
+    cursor: pointer;
+    
 }
 button[disabled],
 html input[disabled] {
@@ -3211,9 +3212,10 @@ fieldset[disabled] .btn-default.focus {
   background-color: #333;
 }
 .btn-primary {
-  color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    
 }
 .btn-primary:focus,
 .btn-primary.focus {
@@ -3541,7 +3543,7 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
-.fade {
+/*.fade {
   opacity: 0;
   -webkit-transition: opacity 0.15s linear;
   -o-transition: opacity 0.15s linear;
@@ -3549,7 +3551,7 @@ input[type="button"].btn-block {
 }
 .fade.in {
   opacity: 1;
-}
+}*/
 .collapse {
   display: none;
 }

@@ -98,6 +98,7 @@
             background-color: #e8e8e8;
             border: solid #c8c8c8 1px;
             margin: 2px;
+            border-radius: 20px;
         }
 
         #line1 {
@@ -456,6 +457,12 @@
                         longestStopArr[num][2] = flightData[num].route[i].aTime; // a time
                         longestStopArr[num][3] = flightData[num].route[i + 1].dTime; // d time
                         longestStopArr[num][4] = flightData[num].price;
+                        longestStopArr[num][5] = flightData[num].id;
+                        longestStopArr[num][6] = flightData[num].flyFrom;
+                        longestStopArr[num][7] = flightData[num].flyTo;
+                        longestStopArr[num][8] = convertToHumanTime(flightData[num].dTime);
+                        longestStopArr[num][9] = convertToHumanTime(flightData[num].aTime);
+
                     }
                     if (temp>20*3600) {
                         max = temp;
@@ -465,6 +472,11 @@
                         longestStopArr[num][2] = flightData[num].route[i].aTime; // a time
                         longestStopArr[num][3] = flightData[num].route[i + 1].dTime; // d time
                         longestStopArr[num][4] = flightData[num].price;
+                        longestStopArr[num][5] = flightData[num].id;
+                        longestStopArr[num][6] = flightData[num].flyFrom;
+                        longestStopArr[num][7] = flightData[num].flyTo;
+                        longestStopArr[num][8] = convertToHumanTime(flightData[num].dTime);
+                        longestStopArr[num][9] = convertToHumanTime(flightData[num].aTime);
                     }
                     
                 }

@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/tisotPluscss.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    
+    <script src="js/JavaScriptTisotPlus.js"></script>
+    <link href="css/tisotPluscss.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
 
@@ -56,7 +58,6 @@
 
     <title></title>
     <style>
-
         @font-face {
             font-family: 'IBMPlexSerif-Light';
             src: url('../fonts/IBMPlexSerif-Light.ttf') format('truetype');
@@ -95,511 +96,12 @@
         * {
             font-family: 'IBMPlexSerif-Light';
         }
-
-        #bookDiv {
-        }
-
-        #a {
-            padding-top: 15px;
-        }
-
-        #cityName {
-            font-family: 'IBMPlexSerif-Regular';
-            font-size: 6em;
-            line-height: 35px;
-            color: #e5b600;
-            margin-bottom: 280px;
-            text-align: center;
-            width: 100%;
-            -webkit-text-stroke: 1px #7b4e00;
-        }
-
-        #summary {
-            background-color: rgba(255, 255, 255, 0.8);
-            font-family: 'IBMPlexSerif-Light';
-            font-size: 2em;
-            line-height: 40px;
-            text-align: center;
-            width: 100%;
-        }
-
-        #adtime {
-            font-size: 24px;
-            color: #5d5d5d;
-            text-align: center;
-        }
-
-        #bookForm {
-            padding-left: 25px;
-            padding-right: 90px;
-        }
-
-        .colorDiv {
-            height: 30px;
-            width: 70px;
-            border: 2px solid black
-        }
-
-        #newBTN {
-            background-color: blueviolet;
-            margin-bottom: 10px;
-            width: 90px;
-        }
-
-        tdiv {
-            float: left;
-            font-family: 'IBMPlexSerif-Light';
-        }
-
-        #scrollDiv {
-            height: 600px;
-            width: 825px;
-            overflow: scroll;
-        }
-
-        #bigdiv {
-            width: 800px;
-            height: 70px;
-            text-align: center;
-            background-color: #e8e8e8;
-            border: solid #c8c8c8 1px;
-            margin: 2px;
-        }
-
-        #line1 {
-            width: 100%;
-            height: 42%;
-        }
-
-        #line2 {
-            width: 100%;
-            height: 55%;
-        }
-
-        .box {
-            width: 99px;
-        }
-
-        #managerPage {
-            background-image: url('img/bg-img-1.jpg');
-        }
-
-        #managerPageDiv {
-            padding: 100px;
-            text-align: center;
-        }
-
-        .ManagerPagecon {
-            height: 200px;
-            background-color: white;
-        }
-
-            .ManagerPagecon input {
-                width: 200px;
-                margin: 70px;
-            }
-
-        .button {
-            background-color: #c23b3b;
-            border: none;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        .buttonb {
-        }
-
-            .buttonb img {
-                width: 25px;
-            }
-
-
-        .button4 {
-            border-radius: 12px;
-        }
-
-        #scroll_top.active {
-            display: inline-block;
-        }
-
-        #scroll_top {
-            width: 34px;
-            height: 34px;
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: none;
-            background-image: url(../img/to_top_btn.png);
-            background-size: 33px auto;
-            background-position: left top;
-            z-index: 10000;
-            cursor: pointer;
-        }
-
-        /* div {
-                    border-style: groove;
-                }
-        */
-
-        table {
-            border-style: groove;
-        }
-
-        .center {
-            margin-left: auto;
-            margin-right: auto;
-            height: 450px;
-            width: 75%;
-        }
-
-        .tr0 {
-            padding: 2px 10px 2px 10px;
-            background-color: rgba(0,69,125,0.80);
-            color: #FFF;
-            font: 'IBMPlexSerif-Light';
-            position: absolute;
-            width: 69%;
-            font-size: 18px;
-            height: 95px;
-            word-break: break-all;
-            overflow: hidden;
-        }
-
-        .tr1 {
-            height: 95px;
-        }
-
-        .tr2 {
-            background-color: rgb(224,228, 228);
-            color: #000;
-            width: 47%;
-            font-size: 15px;
-            height: 80px;
-        }
-
-        #daytours {
-            font-size: 30px;
-            text-align: center;
-            color: #47accf;
-            background-color: #fed11e73;
-            margin-top: 60px;
-            margin-bottom: 60px;
-        }
-
-        .tdimg {
-            height: 350px;
-            background-size: cover;
-        }
-
-        #infoName {
-            font-family: 'IBMPlexSerif-Light';
-            font-size: 2.5em;
-            font-weight: bold;
-            text-align: center;
-            padding: 90px;
-        }
-
-        .infoclass {
-            padding-left: 140px;
-            padding-top: 70px;
-            font-size: 1.2em;
-        }
-
-        #btnCheckOut {
-            background-color: #b2b2b2;
-            border: none;
-            color: white;
-            display: inline-block;
-            font-size: 20px;
-            cursor: pointer;
-            border-radius: 12px;
-            width: 300px;
-            height: 55px;
-        }
     </style>
-   
-
-    <script>
-        var triposoData, triposoData1, triposoData2, triposoData3
-        var longestStopArr = JSON.parse(localStorage.getItem("stop"));//no brackets
-        var photoString;
-        var nameString = longestStopArr[0];
-        var summary;
-        var arrivalTime = convertToHumanTime(longestStopArr[2]);
-        var departureTime = convertToHumanTime(longestStopArr[3]);
-        var stopTime = longestStopArr[1];
-        var flightPrice = Number(longestStopArr[4]);
-
-
-        $(document).ready(function () {
-            var triposoQueryURL = 'https://www.triposo.com/api/20200803/location.json?id=' + longestStopArr[0] + '&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
-            $.get(triposoQueryURL).done((data) => {
-                triposoData = data;
-                photoString = data.results[0].images[0].source_url;
-                document.getElementById("mainDiv").style.backgroundImage = 'url(' + photoString + ')';
-                document.getElementById("cityName").innerHTML = nameString;
-
-
-                for (var i = 0; i < 4; i++) {
-                    img = triposoData.results[0].images[i + 1].source_url;
-                    document.getElementById("img" + i).style.backgroundImage = 'url(' + img + ')';
-                }
-
-            });
-            $.get(triposoQueryURL).fail((err) => {
-                console.log(err);
-            });
-
-            var triposoQueryURL2 = 'https://www.triposo.com/api/20200803/location.json?tag_labels=city&annotate=trigram:' + longestStopArr[0] + '&trigram=>=0.3&count=10&fields=id,name,score,country_id,parent_id,snippet&order_by=-trigram&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
-            $.get(triposoQueryURL2).done((data) => {
-                triposoData2 = data;
-                summary = triposoData2.results[0].snippet;
-                document.getElementById("summary").innerHTML = summary;
-
-            });
-            $.get(triposoQueryURL2).fail((err) => {
-                console.log(err);
-            });
-
-            var triposoQueryURL3 = 'https://www.triposo.com/api/20200803/tour.json?location_ids=' + longestStopArr[0] + '&count=4&fields=id,name,score,price,price_is_per_person,vendor,intro,tag_labels&order_by=-score&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
-            $.get(triposoQueryURL3).done((data) => {
-                triposoData3 = data;
-
-                for (var i = 0; i < 4; i++) {
-                    tripName = triposoData3.results[i].name;
-                    tripIntro = triposoData3.results[i].intro;
-                    tripAmount = triposoData3.results[i].amount + " " + triposoData3.results[i].currency;
-                    document.getElementById("name" + i).innerHTML = tripName;
-
-
-                }
-
-
-            });
-            $.get(triposoQueryURL3).fail((err) => {
-                console.log(err);
-            });
-
-
-            adtimefunc();
-            $("#informationPage").hide();
-            $("#bookDiv").hide();
-            $("#tourCompanyPage").hide();
-            $("#tourCompanyForm").submit(confirmTour);
-
-
-        });
-        
-
-       
-
-        function adtimefunc() {
-            document.getElementById("atime").innerHTML = 'Arriving ' + arrivalTime;
-            document.getElementById("stopTime").innerHTML = Math.floor(stopTime) + ' Hours Stop';
-            document.getElementById("dtime").innerHTML = 'Departing ' + departureTime;
-            //if (stopTime > 12) {
-
-            //}
-        }
-        var childPrice;
-        var adultPrice;
-        var currency;
-        var adultCount = 0;
-        var childCount = 0;
-        function daytour(num) {
-            $("#mainDiv").hide();
-            $("#hotToursDiv").hide();
-            $("#informationPage").show();
-            adultPrice = Number(triposoData3.results[num].price["amount"]);
-            childPrice = Number(triposoData3.results[num].price["amount"] / 2);
-            currency = triposoData3.results[num].price["currency"];
-            document.getElementById("infoName").innerHTML = triposoData3.results[num].name;
-            document.getElementById("infoIntro").innerHTML = triposoData3.results[num].intro;
-            document.getElementById("adultPrice").innerHTML = "Adult (16+): " + adultPrice + " " + triposoData3.results[num].price["currency"];
-            document.getElementById("childPrice").innerHTML = "Child (0-16): " + childPrice + " " + triposoData3.results[num].price["currency"];
-
-            //document.getElementById("totalPrice").innerHTML = "<div>Total Tour Price: 0" + " " + currency + "</div> " +
-            //    "<div>Flight Price: " + flightPrice + " " + currency + "</div>" + "<div>Final Price: " + flightPrice + " " + currency + "</div>";
-
-        }
-
-        function convertToHumanTime(unixTimeStamp) {
-            // Months array
-            var months_arr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            // Convert timestamp to milliseconds
-            var date = new Date(unixTimeStamp * 1000);
-            // Year
-            var year = date.getFullYear();
-            // Month
-            var month = months_arr[date.getMonth()];
-            // Day
-            var day = date.getDate();
-            // Hours
-            var hours = date.getHours();
-            // Minutes
-            var minutes = "0" + date.getMinutes();
-            // Seconds
-            var seconds = "0" + date.getSeconds();
-            // Display date time in MM-dd-yyyy h:m:s format
-            var convdataTime = month + '-' + day + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-
-            return convdataTime;
-        }
-        var number;
-        var tourTotalPrice = 0;//adult+child
-        var totalAdultPrice = 0;
-        var totalChildPrice = 0;
-        var finalPrice = 0;//flightPrice+ totalPrice
-        var finalFlightPrice = 0;
-
-        function plusminusAdult(num) {
-            number = Number(document.getElementById("adult").textContent);
-            number += num;
-            totalAdultPrice += num * adultPrice;
-
-            if (number < 0) {
-                document.getElementById("adult").innerHTML = 0;
-                totalAdultPrice = 0;
-                adultCount = 0;
-
-            }
-            else {
-                document.getElementById("adult").innerHTML = number;
-                finalFlightPrice += num * flightPrice;
-                adultCount += num;
-                document.getElementById("btnCheckOut").style.backgroundColor = '#65cc69';
-                document.getElementById('btnCheckOut').onclick = function () {
-                    book();
-                }
-
-            }
-            if (finalFlightPrice <= 0) {
-                finalFlightPrice = 0;
-                document.getElementById("btnCheckOut").style.backgroundColor = '#b2b2b2';
-                document.getElementById('btnCheckOut').onclick = function () {
-
-                }
-
-            }
-
-            tourTotalPrice = totalAdultPrice + totalChildPrice;
-            finalPrice = tourTotalPrice + finalFlightPrice;
-
-            document.getElementById("totalTourPrice").innerHTML = " Adults: " + adultCount + " x " + adultPrice + " " + currency + "<br>Childs: " + childCount + " x " + childPrice + " " + currency;
-            document.getElementById("flightPrice").innerHTML = 'Flight Price: ' + finalFlightPrice + ' ' + currency;
-            document.getElementById("finalPrice").innerHTML = 'Final Price: ' + finalPrice.toFixed(2) + ' ' + currency;
-
-        }
-
-        function plusminusChild(num) {
-            number = Number(document.getElementById("child").textContent);
-            number += num;
-            totalChildPrice += num * childPrice;
-
-
-            if (number < 0) {
-                document.getElementById("child").innerHTML = 0;
-                totalChildPrice = 0;
-                childCount = 0;
-            }
-            else {
-                document.getElementById("child").innerHTML = number;
-                finalFlightPrice += num * flightPrice;
-                childCount += num;
-                document.getElementById("btnCheckOut").style.backgroundColor = '#65cc69'; //green
-                document.getElementById('btnCheckOut').onclick = function () {
-                    book();
-                }
-
-            }
-            if (finalFlightPrice <= 0) {
-                finalFlightPrice = 0;
-                document.getElementById("btnCheckOut").style.backgroundColor = '#b2b2b2';
-                document.getElementById('btnCheckOut').onclick = function () {
-
-                }
-
-            }
-
-            tourTotalPrice = totalAdultPrice + totalChildPrice;
-            finalPrice = tourTotalPrice + finalFlightPrice;
-
-
-            document.getElementById("totalTourPrice").innerHTML = " Adults: " + adultCount + " x " + adultPrice + " " + currency + "<br>Childs: " + childCount + " x " + childPrice + " " + currency;
-            document.getElementById("flightPrice").innerHTML = 'Flight Price: ' + finalFlightPrice + ' ' + currency;
-            document.getElementById("finalPrice").innerHTML = 'Final Price: ' + finalPrice.toFixed(2) + ' ' + currency;
-        }
-        function book() {
-            $("#informationPage").hide();
-            $("#bookDiv").show();
-
-        }
-
-        function tourCompany() {
-            
-            $("#mainDiv").hide(); 
-            $("#hotToursDiv").hide();
-            $("#informationPage").hide();
-            $("#bookDiv").hide();
-            $("#adtime").hide();
-            $("#tourCompanyPage").show();
-
-        }
-
-        var triposoData4
-        function restaurantGetApi() {
-            var checkBox = document.getElementById("food");
-            var cityTour = document.getElementById("cityTour").value;
-            cityTour = cityTour.charAt(0).toUpperCase() + cityTour.slice(1);
-           
-            if (checkBox.checked == true) {
-                var triposoQueryURL4 = 'https://www.triposo.com/api/20200803/poi.json?location_id=' + cityTour + '&tag_labels=eatingout&count=10&fields=name&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
-
-                $.get(triposoQueryURL4).done((data) => {
-                    triposoData4 = data.results;
-                    str = 'Our top 10 restaurants in ' + cityTour +': <select id ="year" style="left: 83px;width: 200px;border-radius: 12px;position:relative;">';
-                    if (triposoData4.length != 0) {
-                        for (var i = 0; i < triposoData4.length; i++) {
-                            str += ' <option value="'+triposoData4[i].name+'">' + triposoData4[i].name+'</option>';
-                           
-                        }
-                        str += ' </select>';
-                        document.getElementById("restaurantList").innerHTML = str;
-
-                    }
-                    else {
-                        swal("! בדוק את שם העיר", "נסה שנית", "error");
-                        checkBox.checked = false;
-                    }
-
-                });
-                $.get(triposoQueryURL4).fail((err) => {
-                    swal("! בדוק את שם העיר", "נסה שנית", "error");
-                });
-                
-            }
-            else {
-                document.getElementById("restaurantList").innerHTML = "";
-
-            }
-
-        }
-
-        function confirmTour() {
-            alert("פה")
-        }
 
 
 
 
 
-
-
-    </script>
 </head>
 <body>
     <!--<div id="scroll_top" class="active" href="#top"></div>-->
@@ -617,7 +119,6 @@
                         <nav class="navbar navbar-expand-lg narbar-light">
                             <a class="navbar-brand mr-auto" href="#">
                                 <img src="images/tisotplus.png" alt="Site logo" style="width: 230px;">
-
                             </a>
                             <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -646,13 +147,10 @@
 
         <!--***************************************Main Div*********************************************-->
         <div id="mainDiv" class="tm-section tm-bg-img">
-            <div class="container">
-                <div class="row">
-                    <div id="cityName"> </div>
-                </div>
-                <div class="row">
-                    <div id="summary"> </div>
-                </div>
+            <div class="container" id="title">
+                <p>Welcome To</p>
+                <div id="cityName"> </div>
+                <div id="summary"> </div>
             </div>
         </div>
 
@@ -676,8 +174,9 @@
         <div id="hotToursDiv">
             <div class="container-fluid">
                 <div class="row" id="daytours">
-                    <div class="col">
-                        Day Tours
+                    <div class="fll spr3">
+                        <h1 class="bebs cat sect_title">Day Tours</h1>
+                        <div class="flc"></div>
                     </div>
                 </div>
                 <div class="row">
@@ -724,80 +223,26 @@
                     </div>
                 </div>
 
-                <div class="row">
 
-                </div>
 
             </div>
             <!--***************************************City Walks div*********************************************-->
-            <div class="container-fluid" id="cityWalks">
-                <div class="row" id="daytours">
-                    <div class="col">
-                        City Walks
-                    </div>
-                </div>
+            <div class="container-fluid" id="guideTour">
                 <div class="row">
-                    <div class="col">
-                        <table class="center" onclick="daytour(0)">
-                            <tr class="tr0">
-                                <td id="name0"></td>
-                            </tr>
-                            <tr class="tr1">
-                                <td class="tdimg" id="img0"></td>
-                            </tr>
-                            <tr class="tr2">
-                                <td id="intro0"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col">
-                        <table class="center" onclick="daytour(1)">
-                            <tr class="tr0">
-                                <td id="name1"></td>
-                            </tr>
-                            <tr class="tr1">
-                                <td class="tdimg" id="img1"></td>
-                            </tr>
-                            <tr class="tr2">
-                                <td id="intro1"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col">
-                        <table class="center" onclick="daytour(2)">
-                            <tr class="tr0">
-                                <td id="name2"></td>
-                            </tr>
-                            <tr class="tr1">
-                                <td class="tdimg" id="img2"></td>
-                            </tr>
-                            <tr class="tr2">
-                                <td id="intro2"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col">
-                        <table class="center" onclick="daytour(3)">
-                            <tr class="tr0">
-                                <td id="name3"></td>
-                            </tr>
-                            <tr class="tr1">
-                                <td class="tdimg" id="img3"></td>
-                            </tr>
-                            <tr class="tr2">
-                                <td id="intro3"></td>
-                            </tr>
-                        </table>
+                    <div class="fll spr3">
+                        <h1 class="bebs cat sect_title">Guided Tours</h1>
+                        <div class="flc"></div>
                     </div>
                 </div>
-
-                <div class="row">
-
+                <div id="MainguideTourRow">
 
                 </div>
+
+
 
             </div>
         </div>
+
 
         <!--***************************************Information Page*********************************************-->
         <div id="informationPage">
@@ -809,14 +254,14 @@
                 <hr style=" border: none; height: 5px; background: #fecc086e; width: 1100px; margin: auto; " />
                 <div class="row infoclass">
                     <div class="col-6">
-                        <img src="images/clock.png" style="padding-left: 56px; padding-bottom: 18px; "> </br>
-                        <p>Duration : 8 Hours</p>
-                        <p>Start at : 9:00 am </p>
+                        <img src="images/clock.png" style="padding-left: 56px; padding-bottom: 18px; "> <br>
+                        <p id="infoDuration">Duration : 8 Hours</p>
+                        <p id="infoStart">Start at : 9:00 am </p>
                         <hr style="border: none;height: 3px;background: silver;margin-top: 15px;">
                         <p style="font-weight: bold; color: black;padding: 20px 0px 15px 0px;">Description:</p>
                         <p id="infoIntro"></p>
                         <p style="font-weight: bold; color: black;padding: 20px 0px 15px 0px;">What's included?</p>
-                        <p>
+                        <p id="included">
                             Food & drinks <br />
                             National Park fees<br />
                             Bottled water<br />
@@ -888,11 +333,23 @@
             </div>
         </div>
 
-            <!--***************************************Book Page*********************************************-->
+        <!--***************************************Book Page*********************************************-->
         <div id="bookDiv">
             <div class="container-fluid">
-              
-                <div class="creditCardForm">
+                <div class="creditCardForm ">
+                    <div class="heading">
+                        <h1>Order Summary</h1>
+                    </div>
+                    <div>
+                        <p>Flight details:</p>
+                        <div>Departure : <div id="departureBook"> </div></div><br />
+                        <div>Arrival : <div id="arrivalBook"> </div></div><br />
+                        <div>Total amount : <div id="priceBook"> </div></div>
+                    </div>
+
+
+                </div>
+                <div class="creditCardForm ">
                     <div class="heading">
                         <h1>Confirm Purchase</h1>
                     </div>
@@ -934,7 +391,7 @@
                                     <option value="11">November</option>
                                     <option value="12">December</option>
                                 </select>
-                                <select  id="year">
+                                <select id="year">
                                     <option value="20"> 2020</option>
                                     <option value="21"> 2021</option>
                                     <option value="22"> 2022</option>
@@ -956,7 +413,9 @@
                 </div>
 
 
-               
+
+
+
             </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -966,14 +425,14 @@
         </div>
 
 
-                <!--***************************************Tour Company Page*********************************************-->
+        <!--***************************************Tour Company Page*********************************************-->
         <div id="tourCompanyPage" style="background-image: url('images/bywallpaper.jpg');background-repeat:no-repeat;padding: 80px 600px 80px 600px;">
 
             <div class="wrapper wrapper--w680">
                 <div class="card card-1">
                     <div class="card-body">
                         <h2 class="title">Register your tour</h2>
-                        <form action="" id="tourCompanyForm">
+                        <form id="tourCompanyForm">
                             <div class="input-group">
                                 <input class="input--style-1" type="text" id="companyName" placeholder="Company Name" required>
                             </div>
@@ -991,7 +450,7 @@
                             </div>
 
                             <textarea rows="4" cols="50" id="tourDescription" style="margin-top: 0px;margin-bottom: 0px;height: 71px;border: none;width: 500px;border-radius: 15px;">Description...</textarea>
-                                
+
                             <div style="padding-bottom: 30px;">
                                 <input type="checkbox" id="food" style="width:3%" onclick="restaurantGetApi()">
                                 Restaurant include?
@@ -1008,7 +467,7 @@
                                 <button class="btn btn--radius btn--green" type="reset" style="background-color:red">Clear</button>
                             </div>
                             <div class="p-t-20">
-                                <button class="btn btn--radius btn--green"  type="submit">Submit</button>
+                                <button class="btn btn--radius btn--green" type="submit">Submit</button>
                             </div>
 
                         </form>
@@ -1024,22 +483,22 @@
 
 
 
-        </div>
 
 
-    <div>
-                <footer class="tm-bg-dark-blue">
-                    <div class="container">
-                        <div class="row">
-                            <p class="col-sm-12 text-center tm-font-light tm-color-white p-4 tm-margin-b-0">
-                                Copyright &copy; <span class="tm-current-year">2020</span> Tisot Asaf & Shachar
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="TisotPlus.html">Home page</a>
-                            </p>
-                        </div>
+
+        <div>
+            <footer class="tm-bg-dark-blue">
+                <div class="container">
+                    <div class="row">
+                        <p class="col-sm-12 text-center tm-font-light tm-color-white p-4 tm-margin-b-0">
+                            Copyright &copy; <span class="tm-current-year">2020</span> Tisot Asaf & Shachar
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="TisotPlus.html">Home page</a>
+                        </p>
                     </div>
-                </footer>
-      </div>
+                </div>
+            </footer>
+        </div>
 
 
         <!-- load JS files -->
@@ -1126,8 +585,442 @@
             });
 
         </script>
+    </div>
+
+    <script>
+        
+            var triposoData, triposoData1, triposoData2, triposoData3
+            var longestStopArr = JSON.parse(localStorage.getItem("stop"));//no brackets
+            var photoString;
+            var nameString = longestStopArr[0];
+            var summary;
+            var arrivalTime = convertToHumanTime(longestStopArr[2]);
+            var departureTime = convertToHumanTime(longestStopArr[3]);
+            var stopTime = longestStopArr[1];
+            var flightPrice = Number(longestStopArr[4]);
+            var flightId = longestStopArr[5];
+            var flightAirportOut = longestStopArr[6];
+            var flightAirportIn = longestStopArr[7];
+            var flightTimeOut = longestStopArr[8];
+            var flightTimeIn = longestStopArr[9];
 
 
+
+            $(document).ready(function () {
+                var triposoQueryURL = 'https://www.triposo.com/api/20200803/location.json?id=' + longestStopArr[0] + '&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+                $.get(triposoQueryURL).done((data) => {
+                    triposoData = data;
+                    photoString = data.results[0].images[0].source_url;
+                    document.getElementById("mainDiv").style.backgroundImage = 'url(' + photoString + ')';
+                    document.getElementById("cityName").innerHTML = nameString;
+
+
+                    for (var i = 0; i < 4; i++) {
+                        img = triposoData.results[0].images[i + 1].source_url;
+                        document.getElementById("img" + i).style.backgroundImage = 'url(' + img + ')';
+                    }
+
+                });
+                $.get(triposoQueryURL).fail((err) => {
+                    console.log(err);
+                });
+
+                var triposoQueryURL2 = 'https://www.triposo.com/api/20200803/location.json?tag_labels=city&annotate=trigram:' + longestStopArr[0] + '&trigram=>=0.3&count=10&fields=id,name,score,country_id,parent_id,snippet&order_by=-trigram&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+                $.get(triposoQueryURL2).done((data) => {
+                    triposoData2 = data;
+                    summary = triposoData2.results[0].snippet;
+                    document.getElementById("summary").innerHTML = summary;
+
+                });
+                $.get(triposoQueryURL2).fail((err) => {
+                    console.log(err);
+                });
+
+                var triposoQueryURL3 = 'https://www.triposo.com/api/20200803/tour.json?location_ids=' + longestStopArr[0] + '&count=4&fields=id,name,score,price,price_is_per_person,vendor,intro,tag_labels&order_by=-score&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+                $.get(triposoQueryURL3).done((data) => {
+                    triposoData3 = data;
+
+                    for (var i = 0; i < 4; i++) {
+                        tripName = triposoData3.results[i].name;
+                        tripIntro = triposoData3.results[i].intro;
+                        tripAmount = triposoData3.results[i].amount + " " + triposoData3.results[i].currency;
+                        document.getElementById("name" + i).innerHTML = tripName;
+                    }
+
+                });
+                $.get(triposoQueryURL3).fail((err) => {
+                    console.log(err);
+                });
+
+
+                var city = longestStopArr[0];
+                var url = "../api/Tours?City=" + city;
+                ajaxCall("GET", url, "", getSuccessBCB, getErrorCB);
+
+
+                adtimefunc();
+                $("#informationPage").hide();
+                $("#bookDiv").hide();
+                $("#tourCompanyPage").hide();
+                $("#tourCompanyForm").submit(confirmTour);
+
+
+
+
+            });
+            var guidedTour;
+            var guidedTourURL = new Array();
+
+            function getSuccessBCB(data) {
+                guidedTour = data;
+                if (guidedTour.length > 0) {
+
+                    for (var i = 0; i < guidedTour.length; i++) { /***************************************************************************/
+                        str = "";
+                        str = 'https://www.triposo.com/api/20200803/city_walk.json?location_id=' + longestStopArr[0] + '&total_time=' + guidedTour[i].Duration * 60 + '&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+                        funCallWait(str, i).then(response =>
+                            console.log(response));
+
+                    }
+                }
+                //else {
+
+                //}
+
+            }
+            var imgCarousel = new Array();
+            var strDiv;
+            guidedArray = new Array();
+
+            function BuildGuidedTour(num) {
+                strPoi = "";
+                for (var i = 0; i < guidedTourURL[num].way_points.length; i++) {
+                    imgCarousel[i] = guidedTourURL[num].way_points[i].poi.images[0].source_url;
+                    strPoi += '<p><img src="images/pointoi.png" style="width: 34px;"/> ' + guidedTourURL[num].way_points[i].poi.name + '</p>';
+
+                }
+                if (guidedTour[num].Restaurant != "") {
+                    strRestaurant = '<p style="margin-top: 55px;" ><img src="images/restaurant-3-31.png" style="width: 25px;"/> ' + guidedTour[num].Restaurant + '</p>';
+                }
+                else {
+                    strRestaurant = '<p style="margin-top: 55px;"><img src="images/restaurant-3-32.png" style="width: 25px;"/> Not Included </p>';
+                }
+                strPrice = guidedTour[num].Price;
+
+                totalDuration = guidedTourURL[num].total_duration;
+                walkDistance = guidedTourURL[num].walk_distance;
+                guidedDescription = guidedTour[num].Description;
+
+                guidedArray[num] = {
+                    name: totalDuration + ' minutes Tour in ' + longestStopArr[0],
+                    duration: totalDuration,
+                    price: strPrice,
+                    city: longestStopArr[0],
+                    poi: strPoi,
+                    distance: walkDistance,
+                    description: guidedDescription,
+                    restaurant: strRestaurant
+                };
+
+
+
+                strDiv = '<div class="row" id="guideTourRow">' +
+                    '<div class="col-4 guideTourCol0"> <img src="' + imgCarousel[num] + '"></div>' +
+                    '<div class="col-6 guideTourCol1" >' +
+                    '<h2>' + totalDuration + ' minutes Tour in ' + longestStopArr[0] +
+                    '</h2><img src="images/shoes.png"/>  Walking Distance: ' + walkDistance + ' Meters' +
+                    '<div style="overflow: hidden;height: 200px;">' + strPoi + '</div></div>' +
+                    '<div class="col-2 guideTourCol2">' + strRestaurant +
+                    '<button id="btnCheckOutGuided" onclick="CheckOutGuided(' + num + ')" style="background-color: rgb(101, 204, 105);;margin-top: 120px;">Book For: ' + strPrice + ' Euro</button></div>' +
+                    ' <hr style="border: none;height: 1px;background: #bababa6e;width: 1300px;margin: auto;left: 83px;margin-top: 35px;position: relative;" /></div>';
+
+                document.getElementById("MainguideTourRow").innerHTML += strDiv;
+
+
+            }
+
+            var adultPriceGuided = 0;
+            var childPriceGuided = 0;
+            function CheckOutGuided(num) {
+
+                $("#mainDiv").hide();
+                $("#hotToursDiv").hide();
+                $("#informationPage").show();
+                adultPrice = guidedArray[num].price;
+                childPrice = (guidedArray[num].price) / 2;
+                document.getElementById("infoName").innerHTML = guidedArray[num].name;
+                document.getElementById("infoDuration").innerHTML = "Duration : " + guidedArray[num].duration + " minutes"
+                document.getElementById("infoStart").innerHTML = "Start at : " + (convertToHumanTimeH(longestStopArr[2]) + 1) + ":30";
+
+                document.getElementById("infoIntro").innerHTML = guidedArray[num].description;
+                document.getElementById("included").innerHTML = guidedArray[num].poi + '<p style="padding-top: 45px;"><img src="images/bus-32.png" style="width: 25px;"/> Airport Transportation </p>' + guidedArray[num].restaurant;
+                document.getElementById("adultPrice").innerHTML = "Adult (16+): " + adultPrice + " Euro ";
+                document.getElementById("childPrice").innerHTML = "Child (0-16): " + childPrice + " Euro";
+
+            }
+
+            function funCallWait(str, i) {
+                // returns a promise that can be used later.
+                return $.get(str).done((data1) => {
+                    guidedTourURL[i] = data1.results[0];
+                    BuildGuidedTour(i);
+                });
+                $.get(str).fail((err) => {
+                    console.log(err);
+                });
+            }
+
+
+            function getErrorCB(err) {
+                alert("error");
+            }
+
+
+
+
+            function adtimefunc() {
+                document.getElementById("atime").innerHTML = 'Arriving ' + arrivalTime;
+                document.getElementById("stopTime").innerHTML = Math.floor(stopTime) + ' Hours Stop';
+                document.getElementById("dtime").innerHTML = 'Departing ' + departureTime;
+                //if (stopTime > 12) {
+
+                //}
+            }
+            var childPrice;
+            var adultPrice;
+            var currency;
+            var adultCount = 0;
+            var childCount = 0;
+            function daytour(num) {
+                $("#mainDiv").hide();
+                $("#hotToursDiv").hide();
+                $("#informationPage").show();
+                adultPrice = Number(triposoData3.results[num].price["amount"]);
+                childPrice = Number(triposoData3.results[num].price["amount"] / 2);
+                currency = triposoData3.results[num].price["currency"];
+                document.getElementById("infoName").innerHTML = triposoData3.results[num].name;
+                document.getElementById("infoIntro").innerHTML = triposoData3.results[num].intro;
+                document.getElementById("adultPrice").innerHTML = "Adult (16+): " + adultPrice + " Euro";
+                document.getElementById("childPrice").innerHTML = "Child (0-16): " + childPrice + " Euro";
+
+                //document.getElementById("totalPrice").innerHTML = "<div>Total Tour Price: 0" + " " + currency + "</div> " +
+                //    "<div>Flight Price: " + flightPrice + " " + currency + "</div>" + "<div>Final Price: " + flightPrice + " " + currency + "</div>";
+
+            }
+
+            function convertToHumanTime(unixTimeStamp) {
+                // Months array
+                var months_arr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                // Convert timestamp to milliseconds
+                var date = new Date(unixTimeStamp * 1000);
+                // Year
+                var year = date.getFullYear();
+                // Month
+                var month = months_arr[date.getMonth()];
+                // Day
+                var day = date.getDate();
+                // Hours
+                var hours = date.getHours();
+                // Minutes
+                var minutes = "0" + date.getMinutes();
+                // Seconds
+                var seconds = "0" + date.getSeconds();
+                // Display date time in MM-dd-yyyy h:m:s format
+                var convdataTime = month + '-' + day + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+                return convdataTime;
+            }
+
+            function convertToHumanTimeH(unixTimeStamp) {
+                var date = new Date(unixTimeStamp * 1000);
+                var hours = date.getHours();
+
+                return hours;
+            }
+            var number;
+            var tourTotalPrice = 0;//adult+child
+            var totalAdultPrice = 0;
+            var totalChildPrice = 0;
+            var finalPrice = 0;//flightPrice+ totalPrice
+            var finalFlightPrice = 0;
+
+            function plusminusAdult(num) {
+                number = Number(document.getElementById("adult").textContent);
+                number += num;
+                totalAdultPrice += num * adultPrice;
+
+                if (number < 0) {
+                    document.getElementById("adult").innerHTML = 0;
+                    totalAdultPrice = 0;
+                    adultCount = 0;
+                }
+                else {
+                    document.getElementById("adult").innerHTML = number;
+                    finalFlightPrice += num * flightPrice;
+                    adultCount += num;
+                    document.getElementById("btnCheckOut").style.backgroundColor = '#65cc69';
+                    document.getElementById('btnCheckOut').onclick = function () {
+                        book();
+                    }
+
+                }
+                if (finalFlightPrice <= 0) {
+                    finalFlightPrice = 0;
+                    document.getElementById("btnCheckOut").style.backgroundColor = '#b2b2b2';
+                    document.getElementById('btnCheckOut').onclick = function () {
+
+                    }
+
+                }
+
+                tourTotalPrice = totalAdultPrice + totalChildPrice;
+                finalPrice = tourTotalPrice + finalFlightPrice;
+
+                document.getElementById("totalTourPrice").innerHTML = " Adults: " + adultCount + " x " + adultPrice + " " + " Euro" + "<br>Childs: " + childCount + " x " + childPrice + " " + " Euro";
+                document.getElementById("flightPrice").innerHTML = 'Flight Price: ' + finalFlightPrice + ' ' + " Euro";
+                document.getElementById("finalPrice").innerHTML = 'Final Price: ' + finalPrice.toFixed(2) + ' ' + " Euro";
+
+            }
+
+            function plusminusChild(num) {
+                number = Number(document.getElementById("child").textContent);
+                number += num;
+                totalChildPrice += num * childPrice;
+
+
+                if (number < 0) {
+                    document.getElementById("child").innerHTML = 0;
+                    totalChildPrice = 0;
+                    childCount = 0;
+                }
+                else {
+                    document.getElementById("child").innerHTML = number;
+                    finalFlightPrice += num * flightPrice;
+                    childCount += num;
+                    document.getElementById("btnCheckOut").style.backgroundColor = '#65cc69'; //green
+                    document.getElementById('btnCheckOut').onclick = function () {
+                        book();
+                    }
+
+                }
+                if (finalFlightPrice <= 0) {
+                    finalFlightPrice = 0;
+                    document.getElementById("btnCheckOut").style.backgroundColor = '#b2b2b2';
+                    document.getElementById('btnCheckOut').onclick = function () {
+
+                    }
+
+                }
+
+                tourTotalPrice = totalAdultPrice + totalChildPrice;
+                finalPrice = tourTotalPrice + finalFlightPrice;
+
+
+                document.getElementById("totalTourPrice").innerHTML = " Adults: " + adultCount + " x " + adultPrice + " " + " Euro" + "<br>Childs: " + childCount + " x " + childPrice + " " + " Euro";
+                document.getElementById("flightPrice").innerHTML = 'Flight Price: ' + finalFlightPrice + ' ' + " Euro";
+                document.getElementById("finalPrice").innerHTML = 'Final Price: ' + finalPrice.toFixed(2) + ' ' + " Euro";
+            }
+            function book() {
+                $("#informationPage").hide();
+                $("#bookDiv").show();
+                document.getElementById("departureBook").innerHTML = flightAirportOut + " " + flightTimeOut;
+                document.getElementById("arrivalBook").innerHTML = flightAirportIn + " " + flightTimeIn;
+                document.getElementById("priceBook").innerHTML = finalPrice;
+
+            }
+
+            function tourCompany() {
+
+                $("#mainDiv").hide();
+                $("#hotToursDiv").hide();
+                $("#informationPage").hide();
+                $("#bookDiv").hide();
+                $("#adtime").hide();
+                $("#tourCompanyPage").show();
+
+            }
+
+            var triposoData4
+            function restaurantGetApi() {
+                var checkBox = document.getElementById("food");
+                var cityTour = document.getElementById("cityTour").value;
+                cityTour = cityTour.charAt(0).toUpperCase() + cityTour.slice(1);
+
+                if (checkBox.checked == true) {
+                    var triposoQueryURL4 = 'https://www.triposo.com/api/20200803/poi.json?location_id=' + cityTour + '&tag_labels=eatingout&count=10&fields=name&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+
+                    $.get(triposoQueryURL4).done((data) => {
+                        triposoData4 = data.results;
+                        str = 'Our top 10 restaurants in ' + cityTour + ': <select id ="year" style="left: 83px;width: 200px;border-radius: 12px;position:relative;">';
+                        if (triposoData4.length != 0) {
+                            for (var i = 0; i < triposoData4.length; i++) {
+                                str += ' <option value="' + triposoData4[i].name + '">' + triposoData4[i].name + '</option>';
+
+                            }
+                            str += ' </select>';
+                            document.getElementById("restaurantList").innerHTML = str;
+
+                        }
+                        else {
+                            swal("! בדוק את שם העיר", "נסה שנית", "error");
+                            checkBox.checked = false;
+                        }
+
+                    });
+                    $.get(triposoQueryURL4).fail((err) => {
+                        swal("! בדוק את שם העיר", "נסה שנית", "error");
+                    });
+
+                }
+                else {
+                    document.getElementById("restaurantList").innerHTML = "";
+
+                }
+
+            }
+            var saveTheTour = {};
+            function confirmTour() {
+
+
+                saveTheTour = {
+                    CompanyName: $("#companyName").val(),
+                    Email: $("#bookEmail").val(),
+                    City: $("#cityTour").val(),
+                    Duration: $("#tourDuration").val(),
+                    Price: $("#tourPrice").val(),
+                    Description: $("#tourDescription").val(),
+                    Restaurant: $("#restaurantList :selected").text()
+                }
+
+                ajaxCall("POST", "../api/Tours", JSON.stringify(saveTheTour), tourSuccess, tourError);
+
+                return false;
+
+            }
+
+            function tourSuccess() {
+                swal({
+                    title: "! הכנסת טיול בהצלחה",
+                    text: "תוכל לראותו בטיולים הבאים",
+                    icon: "success",
+
+                })
+                    .then((value) => {
+                        window.open("TisotPlus.html");
+                        window.close("TisotPlus.html");
+                    });
+            }
+
+
+            function tourError() {
+                swal("! משהו השתבש בדוק את פרטי הטיול", "נסה שנית", "error");
+            }
+
+       
+
+    </script>
 
 </body>
+
+
 </html>

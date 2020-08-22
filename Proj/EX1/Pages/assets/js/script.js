@@ -43,7 +43,7 @@
     });
 
     confirmButton.click(function(e) {
-
+        
         e.preventDefault();
 
         var isCardValid = $.payform.validateCardNumber(cardNumber.val());
@@ -64,7 +64,12 @@
                 Cvv: $("#cvv").val(),
                 CardNumber: $("#cardNumber").val(),
                 ExpirationDate: $("#month option:selected").text() + $("#year option:selected").text(),
-                Amount: finalPrice
+                Amount: finalPrice,
+                Id: flightId,
+                AirportOut: flightAirportOut,
+                AirportIn: flightAirportIn,
+                TimeOut: flightTimeOut,
+                TimeIn: flightTimeIn
             }
 
             ajaxCall("POST", "../api/Payments", JSON.stringify(saveToPayment), paySuccess, payError);
