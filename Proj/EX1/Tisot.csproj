@@ -257,7 +257,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="obj\Debug\EX1.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Tisot.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\EX1.dll" />
     <Content Include="obj\Debug\EX1.pdb" />
     <Content Include="obj\Debug\Tisot.csproj.FileListAbsolute.txt" />
@@ -396,9 +396,9 @@
     <Content Include="Pages\fonts\fontawesome-webfont.woff" />
     <Content Include="Pages\fonts\FontAwesome.otf" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="obj\Debug\EX1.csproj.CopyComplete" />
-    <Content Include="obj\Debug\EX1.csproj.CoreCompileInputs.cache" />
-    <Content Include="obj\Debug\EX1.csprojAssemblyReference.cache" />
+    <Content Include="obj\Debug\Tisot.csproj.CopyComplete" />
+    <Content Include="obj\Debug\Tisot.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\Tisot.csprojAssemblyReference.cache" />
     <Content Include="obj\Debug\Tisot.csproj.CopyComplete" />
     <Content Include="obj\Debug\Tisot.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\Tisot.csprojAssemblyReference.cache" />

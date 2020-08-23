@@ -674,7 +674,6 @@ public class DBservices
 
                 tourList.Add(t);
             }
-
             return tourList;
         }
         catch (Exception ex)
@@ -688,14 +687,9 @@ public class DBservices
             {
                 con.Close();
             }
-
         }
-        return tourList;
-
     }
      
-
-
 }
 
 
