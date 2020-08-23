@@ -255,8 +255,8 @@
                 <div class="row infoclass">
                     <div class="col-6">
                         <img src="images/clock.png" style="padding-left: 56px; padding-bottom: 18px; "> <br>
-                        <p id="infoDuration">Duration : 8 Hours</p>
-                        <p id="infoStart">Start at : 9:00 am </p>
+                        <p id="infoDuration">Duration : 6 Hours</p>
+                        <p id="infoStart">Start at : 10:30 am </p>
                         <hr style="border: none;height: 3px;background: silver;margin-top: 15px;">
                         <p style="font-weight: bold; color: black;padding: 20px 0px 15px 0px;">Description:</p>
                         <p id="infoIntro"></p>
@@ -607,7 +607,7 @@
 
 
             $(document).ready(function () {
-                var triposoQueryURL = 'https://www.triposo.com/api/20200803/location.json?id=' + longestStopArr[0] + '&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+                var triposoQueryURL = 'https://www.triposo.com/api/20200803/location.json?id=' + longestStopArr[0] + '&account=K3HJT7V8&token=oue4mqfb5mdusczwssltluebxrp8853a';
                 $.get(triposoQueryURL).done((data) => {
                     triposoData = data;
                     photoString = data.results[0].images[0].source_url;
@@ -625,7 +625,7 @@
                     console.log(err);
                 });
 
-                var triposoQueryURL2 = 'https://www.triposo.com/api/20200803/location.json?tag_labels=city&annotate=trigram:' + longestStopArr[0] + '&trigram=>=0.3&count=10&fields=id,name,score,country_id,parent_id,snippet&order_by=-trigram&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+                var triposoQueryURL2 = 'https://www.triposo.com/api/20200803/location.json?tag_labels=city&annotate=trigram:' + longestStopArr[0] + '&trigram=>=0.3&count=10&fields=id,name,score,country_id,parent_id,snippet&order_by=-trigram&account=K3HJT7V8&token=oue4mqfb5mdusczwssltluebxrp8853a';
                 $.get(triposoQueryURL2).done((data) => {
                     triposoData2 = data;
                     summary = triposoData2.results[0].snippet;
@@ -636,7 +636,7 @@
                     console.log(err);
                 });
 
-                var triposoQueryURL3 = 'https://www.triposo.com/api/20200803/tour.json?location_ids=' + longestStopArr[0] + '&count=4&fields=id,name,score,price,price_is_per_person,vendor,intro,tag_labels&order_by=-score&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+                var triposoQueryURL3 = 'https://www.triposo.com/api/20200803/tour.json?location_ids=' + longestStopArr[0] + '&count=4&fields=id,name,score,price,price_is_per_person,vendor,intro,tag_labels&order_by=-score&account=K3HJT7V8&token=oue4mqfb5mdusczwssltluebxrp8853a';
                 $.get(triposoQueryURL3).done((data) => {
                     triposoData3 = data;
 
@@ -677,7 +677,7 @@
 
                     for (var i = 0; i < guidedTour.length; i++) { /***************************************************************************/
                         str = "";
-                        str = 'https://www.triposo.com/api/20200803/city_walk.json?location_id=' + longestStopArr[0] + '&total_time=' + guidedTour[i].Duration * 60 + '&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+                        str = 'https://www.triposo.com/api/20200803/city_walk.json?location_id=' + longestStopArr[0] + '&total_time=' + guidedTour[i].Duration * 60 + '&account=K3HJT7V8&token=oue4mqfb5mdusczwssltluebxrp8853a';
                         funCallWait(str, i).then(response =>
                             console.log(response));
 
@@ -947,7 +947,7 @@
                 cityTour = cityTour.charAt(0).toUpperCase() + cityTour.slice(1);
 
                 if (checkBox.checked == true) {
-                    var triposoQueryURL4 = 'https://www.triposo.com/api/20200803/poi.json?location_id=' + cityTour + '&tag_labels=eatingout&count=10&fields=name&account=O5BH1TQU&token=s7ts6s9bo8zgte06y8pyd58iwly5dasv';
+                    var triposoQueryURL4 = 'https://www.triposo.com/api/20200803/poi.json?location_id=' + cityTour + '&tag_labels=eatingout&count=10&fields=name&account=K3HJT7V8&token=oue4mqfb5mdusczwssltluebxrp8853a';
 
                     $.get(triposoQueryURL4).done((data) => {
                         triposoData4 = data.results;
